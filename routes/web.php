@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/factorial', 'TestController@fact')->name('factorial');
 Route::get('/validate', 'TestController@notString')->name('not_string');
-Route::get('/posts', 'PostController@index')->name('posts_index');
+Route::resource('posts', 'PostController');
+Route::get('/comments', 'CommentController@comm')->name('comments');

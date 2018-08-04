@@ -25,7 +25,7 @@ class TestController extends Controller
 
     private function f($n)
     {
-        return($n < 2 ? 1 : $n * $this->f($n - 1));
+        return ($n < 2 ? 1 : $n * $this->f($n - 1));
     }
 
     /**
@@ -39,8 +39,9 @@ class TestController extends Controller
         ]);
         $errors = $validator->errors();
         if ($validator->fails()) {
-            return $errors->first();        }
-        else { $num = $request->input('num');
+            return $errors->first();
+        } else {
+            $num = $request->input('num');
             $factorial = $this->f($num);
             return $factorial;
         }

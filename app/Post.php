@@ -30,19 +30,36 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    /**
+     * Relation to User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * Relation to Tag
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany(Tag::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function postType()
     {
-        return $this->belongsTo('App\PostType');
+        return $this->belongsTo(PostType::class);
     }
-    //
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }
