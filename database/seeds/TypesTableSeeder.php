@@ -12,14 +12,14 @@ class TypesTableSeeder extends BaseTableSeeder
      */
     public function run()
     {
-       PostType::create([
-           'name' => 'Научный'
-       ]);
-       PostType::create([
-           'name' => 'Развлекательный'
-       ]);
-       PostType::create([
-           'name' => 'Новостной'
-       ]);
+        PostType::create([
+            'name' => 'Научный'
+        ]);
+        PostType::create([
+            'name' => 'Развлекательный'
+        ]);
+        PostType::create([
+            'name' => 'Новостной'
+        ]);
     }
 }
