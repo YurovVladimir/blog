@@ -31,6 +31,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'description', 'post_type_id'
+    ];
+
+    /**
      * Relation to User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

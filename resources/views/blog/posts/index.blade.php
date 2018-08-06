@@ -5,6 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    @if(auth()->user())
+                    <a role="button" class="btn btn-link" href="{{ route('posts.create') }}">
+                        Создать статью
+                    </a>
+                    @endif
                     @foreach($posts as $post)
                         <div class="card">
                             <div class="card-body">

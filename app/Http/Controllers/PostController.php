@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -27,18 +29,20 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return response()
+            ->view('blog.posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = Auth::user()->posts()->create($request->validated());
+        return response()->redirectToRoute('posts.show', ['id' => $post->id]);
     }
 
     /**
