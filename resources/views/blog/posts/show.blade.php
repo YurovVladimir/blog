@@ -5,14 +5,19 @@
             <div class="col-md-8">
                 <div class="jumbotron">
                     <h1 class="display-3" align="center">
-                        {{ $post->name }}
+                        {{ ucfirst($post->name) }}
                     </h1>
                     <p class="lead">
                         {{ $post->description }}
                     </p>
                     <hr class="my-4">
-                    <img src="{{ $post->image }}" class="rounded mx-auto d-block">
-                    <hr class="my-4">
+                    <img src="{{ asset(Storage::url($post->image)) }}" class="rounded mx-auto d-block">
+
+                    @if(auth()->user() && auth()->user()->id == $post->user_id)
+                        <a role="button" class="btn btn-outline-dark btn-lg btn-block"
+                                href="{{ route('posts.edit',['id' => $post->id]) }}"> Редактироваь пост
+                        </a>
+                    @endif
                     <section class="comment-list">
                         @foreach($post->comments as $comment)
                             <div class="card">
@@ -79,7 +84,6 @@
                         @endforeach
                     </section>
                 </div>
-
             </div>
         </div>
     </div>

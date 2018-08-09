@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <form class="my-margin" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                    <form class="my-margin" method="POST" action="{{ route('posts.update') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="nameInput">Название</label>
@@ -56,7 +56,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Создать</button>
+                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Редактировать </button>
                     </form>
                 </div>
             </div>
