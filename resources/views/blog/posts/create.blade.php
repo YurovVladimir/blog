@@ -28,7 +28,6 @@
                                 <div class="alert alert-danger" role="alert">
                                     {{ $errors->first('description') }}
                                 </div>
-                                </span>
                             @endif
                         </div>
                         <div class="form-group">

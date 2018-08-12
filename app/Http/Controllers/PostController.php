@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -41,6 +42,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        /** @var Post $post */
         $post = Auth::user()->posts()->create($request->validated());
         $this->uploadImage($request, $post);
         return response()->redirectToRoute('posts.show', ['id' => $post->id]);
@@ -68,7 +70,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return response()
-            ->view('blog.posts.edit');
+            ->view('blog.posts.edit', [
+                'post' => $post
+            ]);
     }
 
     /**
@@ -80,6 +84,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $post->update($request->validated());
+        $this->uploadImage($request, $post);
         return response()->redirectToRoute('posts.show', ['id' => $post->id]);
     }
 
@@ -88,16 +94,35 @@ class PostController extends Controller
      *
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Post $post)
     {
-        //
+        $this->deleteImage($post);
+        $post->delete();
+        return response()->redirectToRoute('posts.index');
     }
 
+    /**
+     * @param PostRequest $request
+     * @param Post $post
+     */
     public function uploadImage(PostRequest $request, Post $post)
     {
-        $post->image = $request->file('image')->store('image');
-        $post->save();
+        if ($request->hasFile('image')) {
+            $this->deleteImage($post);
+            $post->image = $request->file('image')->store('public/image');
+            $post->save();
+        }
+    }
 
+    /**
+     * @param Post $post
+     */
+    protected function deleteImage(Post $post)
+    {
+        if (Storage::exists($post->image)) {
+            Storage::delete($post->image);
+        }
     }
 }

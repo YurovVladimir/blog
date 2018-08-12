@@ -5,12 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <form class="my-margin" method="POST" action="{{ route('posts.update') }}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                    <form class="my-margin" method="post" action="{{ route('posts.update',['id' => $post->id]) }}"
+                          enctype="multipart/form-data">
+                        @csrf
+                        {{ method_field('patch') }}
                         <div class="form-group">
                             <label for="nameInput">Название</label>
                             <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                                   id="nameInput" value="{{ old('name') }}"
+                                   id="nameInput" value="{{ $post->name }}"
                                    placeholder="Название статьи">
                             @if ($errors->has('name'))
                                 <div class="alert alert-danger" role="alert">
@@ -22,7 +24,8 @@
                             <label for="descriptionInput">Статья</label>
                             <textarea class="form-control  {{ $errors->has('description') ? ' is-invalid' : '' }}"
                                       id="descriptionInput" name="description" rows="3">
-                                {{ old('description') }}
+                                {{ $post->description }}
+
                             </textarea>
                             @if ($errors->has('description'))
                                 <div class="alert alert-danger" role="alert">
@@ -45,6 +48,9 @@
                                 </div>
                             @endif
                         </div>
+                        <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
+                             class="img-fluid">
+                        <hr class="my-4">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Example file input</label>
                             <input type="file"
@@ -56,7 +62,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Редактировать </button>
+                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Готово</button>
                     </form>
                 </div>
             </div>

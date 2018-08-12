@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/factorial', 'TestController@fact')->name('factorial');
 Route::get('/validate', 'TestController@notString')->name('not_string');
 Route::resource('posts', 'PostController');
-Route::get('/comments', 'CommentController@comm')->name('comments');
+Route::resource('comments', 'CommentController', ['only' => [
+    'store', 'update', 'destroy',
+]]);
