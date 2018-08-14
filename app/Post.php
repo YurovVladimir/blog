@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUserId($value)
  * @mixin \Eloquent
+ * @property int $post_type_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePostTypeId($value)
  */
 class Post extends Model
 {

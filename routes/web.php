@@ -24,3 +24,4 @@ Route::resource('posts', 'PostController');
 Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
+Route::get('/img', 'TestController@image')->name('image');

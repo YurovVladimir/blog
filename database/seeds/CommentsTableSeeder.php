@@ -16,7 +16,7 @@ class CommentsTableSeeder extends BaseTableSeeder
         $posts = Post::get();
         $users = User::get();
         foreach ($posts as $post) {
-            for ($i = 0; $i < rand(3, 10); $i++) {
+            for ($i = 0; $i < rand(2, 5); $i++) {
                 $post->comments()->create([
                     'text' => $this->faker->text($maxNbChars = 255),
                     'user_id' => $users->random()->id

@@ -25,6 +25,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $avatar
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatar($value)
  */
 class User extends Authenticatable
 {

@@ -46,4 +46,18 @@ class TestController extends Controller
             return $factorial;
         }
     }
+
+    /**
+     * @param array $params
+     * @return
+     */
+    public function image()
+    {
+        $params = [
+            'query' => 'avatar',
+        ];
+
+        $unsplash = new \MahdiMajidzadeh\LaravelUnsplash\Photo();
+        return $unsplash->random($params)->get()->urls->thumb;
+    }
 }

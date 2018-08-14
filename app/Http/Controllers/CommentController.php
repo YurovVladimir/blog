@@ -70,9 +70,11 @@ class CommentController extends Controller
      * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(CommRequest $request, Comment $comment)
     {
-        //
+        dd('d');
+        $comment->update($request->validated());
+        return response()->redirectToRoute('posts.show', ['id' => $comment->post_id]);
     }
 
     /**

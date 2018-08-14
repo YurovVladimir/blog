@@ -52,8 +52,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
-                                                 class="img img-rounded img-fluid"/>
+                                            <img src="{{ $comment->user->avatar }}"
+                                                 class="mx-auto rounded-circle img-fluid"/>
                                             <p class="text-secondary text-center">
                                                 {{ $comment->created_at->diffForHumans() }}
                                             </p>
@@ -81,13 +81,20 @@
                                                   action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" style="position: absolute; top: 0; right: 35px">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                </button>
+
                                                 <button type="submit" style="position: absolute; top: 0; right: 5px">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>
+                                        @endif
+                                        @if(auth()->user() && auth()->user()->id == $comment->user_id)
+                                            <form method="post"
+                                                  action="{{ route('comments.update', ['id' => $comment->id]) }}">
+                                                {{ method_field('patch') }}
+                                                @csrf
+                                                <button type="submit" style="position: absolute; top: 0; right: 35px">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
                                         @endif
                                     </div>
 
