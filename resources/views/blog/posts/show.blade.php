@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -45,6 +46,7 @@
                         </form>
                         <hr class="my-4">
                     @endif
+
                     <section class="comment-list">
 
                         @foreach($post->comments->sortByDesc('id') as $comment)
@@ -53,7 +55,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <img src="{{ $comment->user->avatar }}"
-                                                 class="mx-auto rounded-circle img-fluid"/>
+                                                 class="avatar" />
                                             <p class="text-secondary text-center">
                                                 {{ $comment->created_at->diffForHumans() }}
                                             </p>
