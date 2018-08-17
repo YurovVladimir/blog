@@ -1,9 +1,22 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        html, body {
+            background: #66ffff url(/img/fon1.jpg);
+            color: #990099;
+            font-family: 'Parkavenue', cursive;
+            font-weight: 100;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     @if(auth()->user())
                         <a role="button" class="btn btn-link" href="{{ route('posts.create') }}">

@@ -1,9 +1,22 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        html, body {
+            background: #66ffff url(/img/fon1.jpg);
+            color: #990099;
+            font-family: 'Parkavenue', cursive;
+            font-weight: 100;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="jumbotron">
                     @if(auth()->user() && auth()->user()->id == $post->user_id)
                         <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
@@ -20,9 +33,11 @@
                     <p class="lead">
                         {{ $post->description }}
                     </p>
-                    <hr class="my-4">
-                    <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
-                         class="img-fluid">
+                    <hr class="my-4 ">
+                        <div class="text-center">
+                            <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
+                                 class="img-fluid media-middle">
+                        </div>
                     <hr class="my-4">
                     @if(auth()->user() && auth()->user()->id == $post->user_id)
                         <a role="button" class="btn btn-outline-dark btn-lg btn-block"
@@ -53,9 +68,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-2 text-center">
                                             <img src="{{ $comment->user->avatar }}"
-                                                 class="avatar" />
+                                                 class="avatar"/>
                                             <p class="text-secondary text-center">
                                                 {{ $comment->created_at->diffForHumans() }}
                                             </p>

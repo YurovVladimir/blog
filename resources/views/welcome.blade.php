@@ -84,13 +84,9 @@
         </div>
 
         <div class="links">
-            <a href="https://laracasts.com">Larac</a>
-            <a href="https://laravel-news.com">News</a>
             <a href="{{ url('/posts') }}">
                 <ins>All posts</ins>
             </a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
         </div>
     </div>
 </div>

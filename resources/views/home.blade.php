@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+                        <hr class="my-4">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
                 </div>
             </div>
         </div>
