@@ -3,9 +3,9 @@
 @section('css')
     <style>
         html, body {
-            background: #66ffff url(/img/fon1.jpg);
-            color: #990099;
-            font-family: 'Parkavenue', cursive;
+            background: #122b40 url(/img/fon1.jpg);
+            color: #000000;
+            font-family: 'Raleway', sans-serif;
             font-weight: 100;
             height: 100vh;
             margin: 0;
@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div class="jumbotron">
                     @if(auth()->user() && auth()->user()->id == $post->user_id)
                         <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
@@ -34,16 +34,18 @@
                         {{ $post->description }}
                     </p>
                     <hr class="my-4 ">
-                        <div class="text-center">
-                            <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
-                                 class="img-fluid media-middle">
-                        </div>
+                    <div class="text-center">
+                        <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
+                             class="img-fluid media-middle">
+                    </div>
                     <hr class="my-4">
                     @if(auth()->user() && auth()->user()->id == $post->user_id)
                         <a role="button" class="btn btn-outline-dark btn-lg btn-block"
                            href="{{ route('posts.edit',['id' => $post->id]) }}"> Редактироваь пост
                         </a>
+                            <hr class="my-4 ">
                     @endif
+
                     @if(auth()->user())
                         <form method="post" action="{{ route('comments.store') }}">
                             @csrf
@@ -56,8 +58,11 @@
                                     {{ $errors->first('text') }}
                                 </div>
                             @endif
-                            <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Добавить комментарий
+                            <br>
+                            <div align="right">
+                            <button type="submit" class="btn btn-light btn-sm" > Добавить комментарий
                             </button>
+                            </div>
                         </form>
                         <hr class="my-4">
                     @endif
@@ -88,10 +93,12 @@
                                             <p>
                                                 {{ $comment->text }}
                                             </p>
-                                            <p>
-                                                <a class="float-right btn btn-outline-primary ml-2"> <i
-                                                            class="fa fa-reply"></i> Reply</a>
-                                            </p>
+                                            <!--
+                                             <p>
+                                                  <a class="float-right btn btn-outline-primary ml-2"> <i
+                                                              class="fa fa-reply"></i> Reply</a>
+                                              </p>
+                                              -->
                                         </div>
                                         @if(auth()->user() && auth()->user()->id == $comment->user_id)
                                             <form method="post"
@@ -103,16 +110,18 @@
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>
-                                        @endif
+                                    @endif
+                                    <!--
                                         @if(auth()->user() && auth()->user()->id == $comment->user_id)
-                                            <form method="post"
-                                                  action="{{ route('comments.update', ['id' => $comment->id]) }}">
+                                        <form method="post"
+                                              action="{{ route('comments.update', ['id' => $comment->id]) }}">
                                                 {{ method_field('patch') }}
-                                                @csrf
+                                        @csrf
                                                 <button type="submit" style="position: absolute; top: 0; right: 35px">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </button>
                                         @endif
+                                            -->
                                     </div>
 
                                     {{--<div class="card card-inner">--}}

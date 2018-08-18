@@ -2,10 +2,10 @@
 
 @section('css')
     <style>
-        html, body {
-            background: #66ffff url(/img/fon1.jpg);
-            color: #990099;
-            font-family: 'Parkavenue', cursive;
+        html, body  {
+            background: #122b40 url(/img/fon1.jpg);
+            color: #000000;
+            font-family: 'Raleway', sans-serif;
             font-weight: 100;
             height: 100vh;
             margin: 0;
@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div class="card">
                     @if(auth()->user())
                         <a role="button" class="btn btn-link" href="{{ route('posts.create') }}">
