@@ -85,7 +85,7 @@
 
         <div class="links">
             <a href="{{ url('/posts') }}">
-                <ins>All posts</ins>
+                <ins>posts</ins>
             </a>
         </div>
     </div>

@@ -25,3 +25,5 @@ Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
 Route::get('/img', 'TestController@image')->name('image');
+Route::get('/king', 'MakeConsultController@distribute')->name('king');
+
