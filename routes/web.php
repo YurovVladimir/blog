@@ -25,5 +25,11 @@ Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
 Route::get('/img', 'TestController@image')->name('image');
-Route::get('/king', 'MakeConsultController@distribute')->name('king');
+
+Route::prefix('make_consult')->group(function (){
+    Route::get('king', 'MakeConsultController@distribute')->name('king');
+    Route::get('smile', 'MakeConsultController@smile');
+    Route::get('atmosphere', 'MakeConsultController@atmosphere');
+    Route::post('upload_file', 'MakeConsultController@uploadFile')->name('uploadFile');
+});
 
