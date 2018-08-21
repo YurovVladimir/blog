@@ -1,0 +1,26 @@
+/**MYSQL
+Существует некоторая таблица Книг и некоторая таблица Авторов, у одной Книги может быть множество авторов,
+предложите архитектуру для хранения такой информации.
+Напишите sql-запрос, который бы вывел все книги с n или более авторов.
+**/
+
+CREATE TABLE books(
+    book_id INT NOT NULL AUTO_INCREMENT,
+    b_name VARCHAR(20) NOT NULL,
+    primary key (book_id)
+)
+
+CREATE TABLE authors(
+    author_id INT NOT NULL AUTO_INCREMENT,
+    a_name VARCHAR(40) NOT NULL,
+    book_id INT NOT NULL,
+    primary key (author_id)
+)
+
+
+
+SELECT b_name
+	FROM books
+		RIGHT JOIN authors
+			ON books.book_id = authors.book_id
+    		HAVING COUNT(authors.book_id)>1
