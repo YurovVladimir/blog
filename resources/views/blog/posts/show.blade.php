@@ -111,7 +111,7 @@
                                                 </button>
                                             </form>
                                     @endif
-                                    <!--
+
                                         @if(auth()->user() && auth()->user()->id == $comment->user_id)
                                         <form method="post"
                                               action="{{ route('comments.update', ['id' => $comment->id]) }}">
@@ -121,7 +121,7 @@
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </button>
                                         @endif
-                                            -->
+
                                     </div>
 
                                     {{--<div class="card card-inner">--}}
