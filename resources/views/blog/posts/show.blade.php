@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('js')
+    <script src="{{ asset('js/comment.js') }}" defer></script>
+@endsection
 
 @section('css')
     <style>
@@ -27,6 +30,7 @@
                             </button>
                         </form>
                     @endif
+                    <input type="hidden" id="post_id" value="{{ $post->id }}">
                     <h1 class="display-3" align="center">
                         {{ ucfirst($post->name) }}
                     </h1>
@@ -43,7 +47,7 @@
                         <a role="button" class="btn btn-outline-dark btn-lg btn-block"
                            href="{{ route('posts.edit',['id' => $post->id]) }}"> Редактироваь пост
                         </a>
-                            <hr class="my-4 ">
+                        <hr class="my-4 ">
                     @endif
 
                     @if(auth()->user())
@@ -60,8 +64,8 @@
                             @endif
                             <br>
                             <div align="right">
-                            <button type="submit" class="btn btn-light btn-sm" > Добавить комментарий
-                            </button>
+                                <button type="submit" class="btn btn-light btn-sm"> Добавить комментарий
+                                </button>
                             </div>
                         </form>
                         <hr class="my-4">
@@ -79,6 +83,7 @@
                                             <p class="text-secondary text-center">
                                                 {{ $comment->created_at->diffForHumans() }}
                                             </p>
+
                                         </div>
                                         <div class="col-md-10">
                                             <p>
@@ -90,19 +95,30 @@
                                                 </a>
                                             </p>
                                             <div class="clearfix"></div>
-                                            <p>
+                                            <p class="comment_{{ $comment->id }}">
                                                 {{ $comment->text }}
                                             </p>
+                                            <textarea style="display: none" id="comment_{{ $comment->id }}"
+                                                      class="form-control">{{ $comment->text }}</textarea>
+                                            <div align="right">
+                                                <button type="submit"
+                                                        class="btn btn-dark btn-sm save_comment"
+                                                        data-comment_id="{{ $comment->id }}"
+                                                        style="display: none"> Редактировать комментарий
+                                                </button>
+                                            </div>
+
                                             <!--
                                              <p>
                                                   <a class="float-right btn btn-outline-primary ml-2"> <i
                                                               class="fa fa-reply"></i> Reply</a>
                                               </p>
-                                              -->
+-->
                                         </div>
                                         @if(auth()->user() && auth()->user()->id == $comment->user_id)
                                             <form method="post"
                                                   action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
+
                                                 @csrf
                                                 {{ method_field('DELETE') }}
 
@@ -110,18 +126,13 @@
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>
-                                    @endif
-
-                                        @if(auth()->user() && auth()->user()->id == $comment->user_id)
-                                        <form method="post"
-                                              action="{{ route('comments.update', ['id' => $comment->id]) }}">
-                                                {{ method_field('patch') }}
-                                        @csrf
-                                                <button type="submit" style="position: absolute; top: 0; right: 35px">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                </button>
                                         @endif
-
+                                        @if(auth()->user() && auth()->user()->id == $comment->user_id)
+                                            <button class="edit_comment" data-comment_id="{{ $comment->id }}"
+                                                    style="position: absolute; top: 0; right: 35px">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                        @endif
                                     </div>
 
                                     {{--<div class="card card-inner">--}}

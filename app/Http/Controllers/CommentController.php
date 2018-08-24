@@ -65,15 +65,13 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CommRequest $request
      * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function update(CommRequest $request, Comment $comment)
     {
-        dd('d');
-        $comment->update($request->validated());
-        return response()->redirectToRoute('posts.show', ['id' => $comment->post_id]);
+        return response()->json($comment->update($request->validated()), 204);
     }
 
     /**
