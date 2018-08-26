@@ -51,9 +51,8 @@
                     @endif
 
                     @if(auth()->user())
-                        <form method="post" action="{{ route('comments.store') }}">
+                            <input type="hidden" id="post_id" value="{{ $post->id }}" name="post_id">
                             @csrf
-                            <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <textarea class="form-control {{ $errors->has('text') ? ' is-invalid' : '' }}"
                                       id="commentInput" name="text" rows="3">
                             </textarea>
@@ -64,108 +63,22 @@
                             @endif
                             <br>
                             <div align="right">
-                                <button type="submit" class="btn btn-light btn-sm"> Добавить комментарий
+                                <button type="submit" class="btn btn-light btn-sm store_comment">
+                                    Добавить комментарий
                                 </button>
+                                <!-- data-comment_id="{ $comment->id }}"-->
                             </div>
-                        </form>
+
+                            <div style="display:none;">
+                                @include('blog.comments.comment_block')
+                            </div>
+
                         <hr class="my-4">
                     @endif
 
                     <section class="comment-list">
-
                         @foreach($post->comments->sortByDesc('id') as $comment)
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2 text-center">
-                                            <img src="{{ $comment->user->avatar }}"
-                                                 class="avatar"/>
-                                            <p class="text-secondary text-center">
-                                                {{ $comment->created_at->diffForHumans() }}
-                                            </p>
-
-                                        </div>
-                                        <div class="col-md-10">
-                                            <p>
-                                                <a class="float-left"
-                                                   href="https://maniruzzaman-akash.blogspot.com/p/contact.html">
-                                                    <strong>
-                                                        {{ $comment->user->name }}
-                                                    </strong>
-                                                </a>
-                                            </p>
-                                            <div class="clearfix"></div>
-                                            <p class="comment_{{ $comment->id }}">
-                                                {{ $comment->text }}
-                                            </p>
-                                            <textarea style="display: none" id="comment_{{ $comment->id }}"
-                                                      class="form-control">{{ $comment->text }}</textarea>
-                                            <div align="right">
-                                                <button type="submit"
-                                                        class="btn btn-dark btn-sm save_comment"
-                                                        data-comment_id="{{ $comment->id }}"
-                                                        style="display: none"> Редактировать комментарий
-                                                </button>
-                                            </div>
-
-                                            <!--
-                                             <p>
-                                                  <a class="float-right btn btn-outline-primary ml-2"> <i
-                                                              class="fa fa-reply"></i> Reply</a>
-                                              </p>
--->
-                                        </div>
-                                        @if(auth()->user() && auth()->user()->id == $comment->user_id)
-                                            <form method="post"
-                                                  action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
-
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-
-                                                <button type="submit" style="position: absolute; top: 0; right: 5px">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        @endif
-                                        @if(auth()->user() && auth()->user()->id == $comment->user_id)
-                                            <button class="edit_comment" data-comment_id="{{ $comment->id }}"
-                                                    style="position: absolute; top: 0; right: 35px">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </button>
-                                        @endif
-                                    </div>
-
-                                    {{--<div class="card card-inner">--}}
-                                    {{--<div class="card-body">--}}
-                                    {{--<div class="row">--}}
-                                    {{--<div class="col-md-2">--}}
-                                    {{--<img src="https://image.ibb.co/jw55Ex/def_face.jpg"--}}
-                                    {{--class="img img-rounded img-fluid"/>--}}
-                                    {{--<p class="text-secondary text-center">--}}
-                                    {{--{{ $comment->created_at }}--}}
-                                    {{--</p>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-md-10">--}}
-                                    {{--<p>--}}
-                                    {{--<a href="https://maniruzzaman-akash.blogspot.com/p/contact.html">--}}
-                                    {{--<strong>--}}
-                                    {{--{{ $comment->user->name }}--}}
-                                    {{--</strong>--}}
-                                    {{--</a>--}}
-                                    {{--</p>--}}
-                                    {{--<p>--}}
-                                    {{--{{ $comment->text }}--}}
-                                    {{--</p>--}}
-                                    {{--<p>--}}
-                                    {{--<a class="float-right btn btn-outline-primary ml-2"> <i--}}
-                                    {{--class="fa fa-reply"></i> Reply</a>--}}
-                                    {{--</p>--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
-                                </div>
-                            </div>
+                            @include('blog.comments.comment_block')
                         @endforeach
                     </section>
                 </div>

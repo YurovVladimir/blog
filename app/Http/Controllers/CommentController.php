@@ -36,11 +36,11 @@ class CommentController extends Controller
      */
     public function store(CommRequest $request)
     {
-        $comment = Auth::user()->comments()->create($request->validated());
-        return response()->redirectToRoute('posts.show', ['id' => $request->post_id]);
+//      return redirect()->back();
+        return response()->json(Auth::user()->comments()->create($request->validated())->load('user'), 201);
     }
 
-    /**
+    /**я
      * Display the specified resource.
      *
      * @param  \App\Comment $comment
@@ -83,7 +83,10 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment->delete();
-        return response()->redirectToRoute('posts.show', ['id' => $comment->post_id]);
+        /**       $comment->delete();
+         * return response()->redirectToRoute('posts.show', ['id' => $comment->post_id]);
+         **/
+        return response()->json(($comment->delete()), 204);
+
     }
 }
