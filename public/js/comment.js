@@ -1,10 +1,11 @@
-$('.edit_comment').on('click', function () {
+var body = $('body');
+body.on('click', '.edit_comment', function () {
     let comment_id = $(this).attr('data-comment_id');
     $('#comment_' + comment_id).show();
     $('.btn[data-comment_id=' + comment_id + ']').show();
     $('.comment_' + comment_id).hide();
 });
-$('.save_comment').on('click', function () {
+body.on('click', '.save_comment', function () {
     let comment_id = $(this).attr('data-comment_id'),
         post_id = $('#post_id').val(),
         comment_textarea = $('#comment_' + comment_id);
@@ -26,7 +27,7 @@ $('.save_comment').on('click', function () {
         }
     });
 });
-$('.delete_comment').on('click', function () {
+body.on('click', '.delete_comment', function () {
     let comment_id = $(this).attr('data-comment_id'),
         post_id = $('#post_id').val(),
         comment = $(this).parents('.comment_block');
@@ -48,18 +49,27 @@ $('.delete_comment').on('click', function () {
 });
 $('.store_comment').on('click', function () {
     let post_id = $('#post_id').val(),
-        template_comment=$('.comment_block[data-comment_id=0]').clone();
-    console.log(template_comment);
+        template_comment = $('.comment_block[data-comment_id=0]').clone(),
+        comment_input = $('#commentInput');
     $.ajax({
         type: "post",
         url: "/comments",
         data: {
             'post_id': post_id,
             '_token': $('input[name=_token]').val(),
-            'text': $('#commentInput').val(),
+            'text': comment_input.val(),
         },
-        success: function (data) {
-            console.log(data.text);
+        success: function (comment) {
+            comment_input.val("");
+            template_comment.attr("data-comment_id", comment.id);
+            template_comment.find("[data-comment_id=0]").attr("data-comment_id", comment.id);
+            template_comment.find(".comment_0").removeClass("comment_0").addClass("comment_" + comment.id).text(comment.text);
+            template_comment.find("#comment_0").attr("id", "comment_" + comment.id).val(comment.text);
+            template_comment.find(".avatar").attr("src", "/img/default_avatar.jpg");
+            template_comment.find(".created_at").text("now");
+            template_comment.find(".user_name strong").text(comment.user.name);
+            $(".comment-list").prepend(template_comment);
+            console.log(comment);
         },
         error: function (error) {
             console.log(error);

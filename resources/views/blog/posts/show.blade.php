@@ -78,6 +78,7 @@
 
                     <section class="comment-list">
                         @foreach($post->comments->sortByDesc('id') as $comment)
+
                             @include('blog.comments.comment_block')
                         @endforeach
                     </section>

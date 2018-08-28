@@ -4,18 +4,16 @@
             <div class="col-md-2 text-center">
                 <img src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}"
                      class="avatar"/>
-                <p class="text-secondary text-center">
+                <p class="text-secondary text-center created_at">
                     {{ isset($comment) ? $comment->created_at->diffForHumans() : '' }}
                 </p>
 
             </div>
             <div class="col-md-10">
-                <p>
-                    <a class="float-left">
+                <p class="float-left user_name">
                         <strong>
                             {{ $comment->user->name ?? '' }}
                         </strong>
-                    </a>
                 </p>
                 <div class="clearfix"></div>
                 <p class="comment_{{ $comment->id ?? 0}}">
