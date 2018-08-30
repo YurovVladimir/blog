@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         return response()
             ->view('blog.posts.index', [
-                'posts' => Post::with('user')->paginate(5)
+                'posts' => Post::with('user')->paginate(3)
             ]);
     }
 
