@@ -3,10 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Comment;
+use App\Exports\CommentsExport;
 use App\Mail\CommentReportEmail;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SendComments extends Command
 {
@@ -46,6 +48,4 @@ class SendComments extends Command
         Mail::to('vovamadlion@yandex.ru')
             ->send(new CommentReportEmail($comments));
     }
-
-
 }
