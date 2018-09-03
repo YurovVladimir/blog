@@ -38,6 +38,7 @@ class CommentReportEmail extends Mailable
      */
     public function build()
     {
+      //  foreach ()
         if ($this->comments->count() > 5) {
             $export_path = 'exports/comments.xlsx';
             Excel::store(new CommentsExport($this->comments), $export_path);

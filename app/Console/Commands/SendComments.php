@@ -2,13 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Comment;
-use App\Exports\CommentsExport;
 use App\Mail\CommentReportEmail;
+use App\Post;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
-use Maatwebsite\Excel\Facades\Excel;
 
 class SendComments extends Command
 {
@@ -44,8 +43,16 @@ class SendComments extends Command
     public function handle()
     {
         $days = $this->argument('days');
-        $comments = Comment::where('created_at', '>', Carbon::now()->subDays($days))->get();
-        Mail::to('vovamadlion@yandex.ru')
-            ->send(new CommentReportEmail($comments));
+        $userIds = Post::whereHas('comments', function ($query) use ($days) {
+            $query->where('created_at', '>', Carbon::now()->subDays($days));
+        })->with(['comments' => function ($query) use ($days) {
+            $query->where('created_at', '>', Carbon::now()->subDays($days));
+        }])->get()->groupBy('user_id');
+        foreach ($userIds as $userId => $posts) {
+            if ($user = User::find($userId)) {
+                Mail::to($user)
+                    ->send(new CommentReportEmail($posts));
+            }
+        }
     }
 }

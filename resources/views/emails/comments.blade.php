@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td style="background: white;padding: 30px 35px;">
-                        <h2>Hi Vladimir,</h2>
+                        <h2>Hi ,</h2>
                         @foreach($comments->take(5) as $comment)
                             @php /** @var \App\Comment $comment */ @endphp
                                 <div style="background: white;padding: 30px 35px;">
