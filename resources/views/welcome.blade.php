@@ -13,12 +13,17 @@
     <!-- Styles -->
     <style>
         html, body {
-            background-color: #66ffff;
-            background-image: url(public/image/fon1.jpg);
+            background: #122b40 url(/img/myblog.jpeg);
+            margin:0;
+            padding:0;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100%;
             color: #990099;
             font-family: 'Parkavenue', cursive;
             font-weight: 100;
-            height: 100vh;
             margin: 0;
         }
 

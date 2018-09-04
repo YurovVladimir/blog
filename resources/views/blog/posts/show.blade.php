@@ -6,7 +6,7 @@
 @section('css')
     <style>
         html, body {
-            background: #122b40 url(/img/fon1.jpg);
+            background: #122b40 url(/img/image.jpeg);
             color: #000000;
             font-family: 'Raleway', sans-serif;
             font-weight: 100;
