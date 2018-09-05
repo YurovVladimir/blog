@@ -1,99 +1,50 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <style>
-        html, body {
-            background: #122b40 url(/img/myblog.jpeg);
-            margin:0;
-            padding:0;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            height: 100%;
-            color: #990099;
-            font-family: 'Parkavenue', cursive;
-            font-weight: 100;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 112px;
-        }
-
-        .links > a {
-            color: #000033;
-            padding: 0 25px;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            My blog
-        </div>
-
-        <div class="links">
-            <a href="{{ url('/posts') }}">
-                <ins>posts</ins>
-            </a>
+@section('content')
+    <div class="header-2">
+        <div class="page-header header-filter">
+            <div class="page-header-image" style="background-image: url('img/bg14.jpg');"></div>
+            <div class="content-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto text-center">
+                            <h1 class="title"> You should be here!</h1>
+                            <h5 class="description">5,000 capacity venue, holding some of the latest technology lighting with a 24 colour laser system Amnesia is one of the islands most legendary clubs.</h5>
+                        </div>
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                                <div class="card-body">
+                                    <form method="" action="">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" value="" placeholder="Full Name" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="email" value="" placeholder="Your Email" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="password" value="" placeholder="Password" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="button" class="btn btn-primary btn-round btn-block">Join Us</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+@endsection
+
+@section('js')
+@endsection

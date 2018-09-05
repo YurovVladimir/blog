@@ -50,6 +50,7 @@ class SendComments extends Command
         }])->get()->groupBy('user_id');
         foreach ($userIds as $userId => $posts) {
             if ($user = User::find($userId)) {
+                $this->info("send report to user $user->name");
                 Mail::to($user)
                     ->send(new CommentReportEmail($posts));
             }

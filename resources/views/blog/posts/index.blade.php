@@ -1,18 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-    <style>
-        html, body  {
-            background: #122b40 url(/img/fon1.jpg);
-            color: #000000;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

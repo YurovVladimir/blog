@@ -150,8 +150,13 @@
                 <tr>
                     <td style="background: white;padding: 30px 35px;">
                         <h2>Hi ,</h2>
-                        @foreach($comments->take(5) as $comment)
-                            @php /** @var \App\Comment $comment */ @endphp
+                        @foreach($posts as $post)
+                            <h2 style="font-size: 28px;">
+                                {{ $post->name }}
+                            </h2>
+                            <br>
+                            @foreach($post->comments->take(5) as $comment)
+                                @php /** @var \App\Comment $comment */ @endphp
                                 <div style="background: white;padding: 30px 35px;">
                                     <div class="card-body">
                                         <h2 style="font-size: 28px;">
@@ -164,22 +169,23 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                @endforeach
-                                <table>
-                                    <tr>
-                                        <td align="center">
-                                            <p style="margin-bottom: 0;
+                            @endforeach
+                            <hr>
+                        @endforeach
+                        <table>
+                            <tr>
+                                <td align="center">
+                                    <p style="margin-bottom: 0;
                                     color: #888;
                                     text-align: center;
                                     font-size: 14px;">
-                                                <a href="#"
-                                                   style="display: inline-block;color: white;background: #71bc37;border: solid #71bc37;border-width: 10px 20px 8px;font-weight: bold;border-radius: 4px;">Share
-                                                    the Awesomeness</a>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </table>
+                                        <a href="#"
+                                           style="display: inline-block;color: white;background: #71bc37;border: solid #71bc37;border-width: 10px 20px 8px;font-weight: bold;border-radius: 4px;">Share
+                                            the Awesomeness</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
