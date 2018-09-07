@@ -14,22 +14,19 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200|Open+Sans+Condensed:700" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @yield('css')
 </head>
-<body class="sections-page">
+<body>
 @include('layouts.navbar')
-    <div id="app">
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+<div id="app">
+    @yield('content')
+</div>
 
-    @yield('js')
+@yield('js')
 </body>
 </html>

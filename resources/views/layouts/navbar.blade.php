@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top ">
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">
 
         <div class="navbar-translate">
@@ -13,7 +13,7 @@
             </button>
         </div>
 
-        <div class="collapse navbar-collapse has-image" id="navigation" data-color="orange" style="background: url('./img/blurred-image-1.jpg') 0% 0% / cover;">
+        <div class="collapse navbar-collapse has-image" id="navigation" data-color="orange" data-nav-image="/img/blurred-image-1.jpg">
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">

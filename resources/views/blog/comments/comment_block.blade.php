@@ -1,47 +1,57 @@
-<div class="card comment_block" data-comment_id="{{ $comment->id ?? 0}}">
-    <div class="card-body" >
-        <div class="row">
-            <div class="col-md-2 text-center">
-                <img src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}"
-                     class="avatar"/>
-                <p class="text-secondary text-center created_at">
-                    {{ isset($comment) ? $comment->created_at->diffForHumans() : '' }}
-                </p>
-
+<div class="card section-comments comment_block" data-comment_id="{{ $comment->id ?? 0}}">
+    <div class="media-area card-body">
+        <div class="media">
+            <div class="avatar">
+                <img class="media-object img-raised avatar avatar_a"
+                     src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}">
             </div>
-            <div class="col-md-10">
-                <p class="float-left user_name">
-                        <strong>
-                            {{ $comment->user->name ?? '' }}
-                        </strong>
-                </p>
-                <div class="clearfix"></div>
+            <div class="media-body">
+                <h5 class="media-heading user_name">
+                    <font style="vertical-align: inherit;">{{ $comment->user->name ?? '' }}
+                    </font>
+                    <small class="text-muted created_at">
+                        <font style="vertical-align: inherit;">
+                            {{ isset($comment) ? $comment->created_at->diffForHumans() : '' }}
+                        </font>
+                    </small>
+                </h5>
                 <p class="comment_{{ $comment->id ?? 0}}">
-                    {{ $comment->text ?? '' }}
+                    <font style="vertical-align: inherit;">
+                        {{ $comment->text ?? '' }}
+                    </font>
                 </p>
                 <textarea style="display: none" id="comment_{{ $comment->id ?? 0 }}"
                           class="form-control">{{ $comment->text ?? ''}}</textarea>
                 <div align="right">
                     <button type="submit"
-                            class="btn btn-dark btn-sm save_comment"
+                            class="btn btn-default btn-round save_comment"
                             data-comment_id="{{ $comment->id ?? 0}}"
-                            style="display: none"> Редактировать комментарий
+                            style="display: none">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать комментарий
                     </button>
                 </div>
             </div>
             @php $user = auth()->user()  @endphp
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="delete_comment" data-comment_id="{{ $comment->id ?? 0 }}"
+                <button class="btn btn-default btn-icon btn-round btn-sm delete_comment"
+                        data-comment_id="{{ $comment->id ?? 0 }}"
                         style="position: absolute; top: 0; right: 5px">
                     <i class="fa fa-times"></i>
                 </button>
             @endif
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="edit_comment" data-comment_id="{{ $comment->id ?? 0 }}"
-                        style="position: absolute; top: 0; right: 35px">
+                <button class="btn btn-default btn-icon btn-round btn-sm edit_comment"
+                        data-comment_id="{{ $comment->id ?? 0 }}"
+                        style="position: absolute; top: 0; right: 38px">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
             @endif
         </div>
+        <div class="card-footer">
+            <div class="color-default" style="position: absolute; bottom: 5px; right: 10px">
+                <i class="now-ui-icons ui-2_favourite-28"></i> 342
+            </div>
+        </div>
     </div>
 </div>
+

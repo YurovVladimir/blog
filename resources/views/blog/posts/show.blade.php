@@ -3,24 +3,11 @@
     <script src="{{ asset('js/comment.js') }}" defer></script>
 @endsection
 
-@section('css')
-    <style>
-        html, body {
-            background: #122b40 url(/img/image.jpeg);
-            color: #000000;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
-@endsection
-
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="jumbotron">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
                     @if(auth()->user() && auth()->user()->id == $post->user_id)
                         <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
                             @csrf
@@ -51,27 +38,34 @@
                     @endif
 
                     @if(auth()->user())
-                            <input type="hidden" id="post_id" value="{{ $post->id }}" name="post_id">
-                            @csrf
-                            <textarea class="form-control {{ $errors->has('text') ? ' is-invalid' : '' }}"
-                                      id="commentInput" name="text" rows="3">
-                            </textarea>
-                            @if ($errors->has('text'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $errors->first('text') }}
+                        <input type="hidden" id="post_id" value="{{ $post->id }}" name="post_id">
+                        @csrf
+                        <div class="media media-post">
+                            <a class="pull-left author" href="#pablo">
+                                <div class="avatar">
+                                    <img class="media-object img-raised avatar" alt="64x64"
+                                         src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}" style="position: relative; right: 3vh">
                                 </div>
-                            @endif
-                            <br>
-                            <div align="right">
-                                <button type="submit" class="btn btn-light btn-sm store_comment">
-                                    Добавить комментарий
-                                </button>
-                                <!-- data-comment_id="{ $comment->id }}"-->
+                            </a>
+                            <div class="media-body">
+                                <textarea class="form-control {{ $errors->has('text') ? ' is-invalid' : '' }}"
+                                          id="commentInput" name="text" placeholder="Оставьте комментарий"
+                                          rows="4"></textarea>
+                                @if ($errors->has('text'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $errors->first('text') }}
+                                    </div>
+                                @endif
+                                <div class="media-footer" align="right">
+                                    <button class="btn btn-primary btn-round store_comment" type="submit">
+                                        <i class="now-ui-icons ui-1_send"></i> Reply
+                                    </button>
+                                </div>
+                                <div style="display:none;">
+                                    @include('blog.comments.comment_block')
+                                </div>
                             </div>
-
-                            <div style="display:none;">
-                                @include('blog.comments.comment_block')
-                            </div>
+                        </div>
 
                         <hr class="my-4">
                     @endif

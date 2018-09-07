@@ -32,7 +32,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button type="button" class="btn btn-primary btn-round btn-block">Join Us</button>
+                                                <a class="btn btn-success btn-round" href="{{ url('/posts') }}">Show posts</a>
                                             </div>
                                         </div>
                                     </form>

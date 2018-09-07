@@ -1,41 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card">
-                    @if(auth()->user())
-                        <a role="button" class="btn btn-link" href="{{ route('posts.create') }}">
-                            Создать статью
-                        </a>
-                    @endif
-                    @foreach($posts as $post)
-                        @php /** @var \App\Post $post */ @endphp
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="text-center card-title">
-                                    {{ ucfirst($post->name) }}
-                                </h2>
-                                <div class="card-text text-right">
-                                    @php $text = substr($post->description, 0, 90) @endphp
-                                    <p class="mb-0">
-                                        {{ $text }} @if(strlen($text) < strlen($post->description)) ...@endif
-                                    </p>
-                                    <h6>
-                                        {{ $post->user->name }}
-                                    </h6>
+    <div class="container" style="position: relative; top: 7vh">
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                @if(auth()->user())
+                    <a role="button" class="btn btn-link" href="{{ route('posts.create') }}">
+                        Создать статью
+                    </a>
+                @endif
+                <br>
+                @foreach($posts as $post)
+                    @php /** @var \App\Post $post */ @endphp
+                    <div class="card card-plain card-blog">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card-image">
+                                    <img class="img img-raised rounded"
+                                         src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}" >
                                 </div>
-                                <a class="btn btn-outline-dark btn-lg btn-block"
-                                   href="{{ route('posts.show', ['id' => $post->id]) }}" role="button">
-                                    Подробнее
-                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h3 class="card-title">
+                                    <a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ ucfirst($post->name) }}</a>
+                                </h3>
+                                <p class="card-description">
+                                        @php $text = substr($post->description, 0, 300) @endphp
+                                    {{ $text }} @if(strlen($text) < strlen($post->description)) <a href="{{ route('posts.show', ['id' => $post->id]) }}"> ... Read
+                                        More </a> @endif
+                                </p>
+
+                                <div class="author">
+                                    <img src="{{ $post->user->avatar ?? '/img/default_avatar.jpg'}}" alt="..."
+                                         class="avatar img-raised">
+                                    <span>{{ $post->user->name ?? '' }}</span>
+                                </div>
+
                             </div>
                         </div>
-                    @endforeach
-                    {{ $posts->links('vendor.pagination.bootstrap-4') }}
-                </div>
+                    </div>
+                @endforeach
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>
+
 @endsection
+
+
+

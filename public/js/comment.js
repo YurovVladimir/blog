@@ -19,7 +19,7 @@ body.on('click', '.save_comment', function () {
         },
         success: function (msg) {
             comment_textarea.hide();
-            $('.btn[data-comment_id=' + comment_id + ']').hide();
+            $('.save_comment[data-comment_id=' + comment_id + ']').hide();
             $('.comment_' + comment_id).text(comment_textarea.val()).show();
         },
         error: function (error) {
@@ -65,7 +65,7 @@ $('.store_comment').on('click', function () {
             template_comment.find("[data-comment_id=0]").attr("data-comment_id", comment.id);
             template_comment.find(".comment_0").removeClass("comment_0").addClass("comment_" + comment.id).text(comment.text);
             template_comment.find("#comment_0").attr("id", "comment_" + comment.id).val(comment.text);
-            template_comment.find(".avatar").attr("src", "/img/default_avatar.jpg");
+            template_comment.find(".avatar_a").attr("src", "/img/default_avatar.jpg");
             template_comment.find(".created_at").text("now");
             template_comment.find(".user_name strong").text(comment.user.name);
             $(".comment-list").prepend(template_comment);
