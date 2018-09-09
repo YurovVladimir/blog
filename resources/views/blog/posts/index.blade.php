@@ -11,7 +11,7 @@
                 @endif
                 <br>
                 @foreach($posts as $post)
-                    @php /** @var \App\Post $post */ @endphp
+                    @php /** @var \App\Models\Post $post */ @endphp
                     <div class="card card-plain card-blog">
                         <div class="row">
                             <div class="col-md-4">

@@ -32,7 +32,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <a class="btn btn-success btn-round" href="{{ url('/posts') }}">Show posts</a>
+                                                <a class="btn btn-info btn-round" href="{{ url('/posts') }}">Show posts</a>
                                             </div>
                                         </div>
                                     </form>

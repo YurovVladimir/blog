@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Http\Requests\CommRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class CommentController extends Controller
 {
@@ -43,7 +45,7 @@ class CommentController extends Controller
     /**я
      * Display the specified resource.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function show(Comment $comment)
@@ -54,7 +56,7 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Models\Comment $comment
      * @return void
      */
     public function edit(Comment $comment)
@@ -66,7 +68,7 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param CommRequest $request
-     * @param  \App\Comment $comment
+     * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function update(CommRequest $request, Comment $comment)
@@ -77,7 +79,7 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -87,6 +89,23 @@ class CommentController extends Controller
          * return response()->redirectToRoute('posts.show', ['id' => $comment->post_id]);
          **/
         return response()->json(($comment->delete()), 204);
+    }
 
+    public function test()
+    {
+        $comment = Comment::first();
+        dd($comment->likes);
+        $user = User::first();
+        $user_like = $user->likes()->create([
+            'is_liked' => true,
+            'likable_type' => Comment::class,
+            'likable_id' => $comment->id
+        ]);
+        dd($user_like);
+        $like = $comment->likes()->create([
+            'is_liked' => true,
+            'user_id' => \auth()->user()->id
+        ]);
+        dd($like);
     }
 }

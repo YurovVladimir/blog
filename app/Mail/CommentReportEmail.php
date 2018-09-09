@@ -2,9 +2,9 @@
 
 namespace App\Mail;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Exports\CommentsExport;
-use App\Post;
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;

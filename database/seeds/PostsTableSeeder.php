@@ -1,7 +1,7 @@
 <?php
 
-use App\User;
-use App\PostType;
+use App\Models\User;
+use App\Models\PostType;
 
 class PostsTableSeeder extends BaseTableSeeder
 {

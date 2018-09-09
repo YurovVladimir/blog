@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Comment;
+use App\Models\Comment;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 

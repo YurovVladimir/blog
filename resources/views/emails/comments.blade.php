@@ -156,7 +156,7 @@
                             </h2>
                             <br>
                             @foreach($post->comments->take(5) as $comment)
-                                @php /** @var \App\Comment $comment */ @endphp
+                                @php /** @var \App\Models\Comment $comment */ @endphp
                                 <div style="background: white;padding: 30px 35px;">
                                     <div class="card-body">
                                         <h2 style="font-size: 28px;">

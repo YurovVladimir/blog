@@ -57,7 +57,7 @@
                                     </div>
                                 @endif
                                 <div class="media-footer" align="right">
-                                    <button class="btn btn-primary btn-round store_comment" type="submit">
+                                    <button class="btn btn-info btn-round store_comment" type="submit">
                                         <i class="now-ui-icons ui-1_send"></i> Reply
                                     </button>
                                 </div>

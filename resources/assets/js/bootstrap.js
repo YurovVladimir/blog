@@ -12,6 +12,9 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('moment');
+    require('bootstrap-switch');
+    require('bootstrap-select');
 } catch (e) {}
 
 /**

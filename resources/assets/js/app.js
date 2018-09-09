@@ -9,6 +9,7 @@ require('./bootstrap');
 
 require('./now-ui-kit');
 
+
 window.Vue = require('vue');
 
 /**

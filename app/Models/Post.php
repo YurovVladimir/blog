@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Post
+ * App\Models\Post
  *
  * @property int $id
  * @property string $name
@@ -15,21 +15,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\PostType $postType
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUserId($value)
+ * @property-read \App\Models\PostType $postType
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUserId($value)
  * @mixin \Eloquent
  * @property int $post_type_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePostTypeId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePostTypeId($value)
  */
 class Post extends Model
 {

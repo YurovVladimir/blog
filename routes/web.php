@@ -33,3 +33,4 @@ Route::prefix('make_consult')->group(function (){
     Route::post('upload_file', 'MakeConsultController@uploadFile')->name('uploadFile');
 });
 
+Route::get('comment/test', 'CommentController@test');

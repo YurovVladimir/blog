@@ -34,7 +34,7 @@
                             <label for="postTypeSelect">Example select</label>
                             <select class="form-control  {{ $errors->has('post_type_id') ? ' is-invalid' : '' }}"
                                     id="postTypeSelect" name="post_type_id">
-                                @foreach(\App\PostType::all() as $post_type)
+                                @foreach(\App\Models\PostType::all() as $post_type)
                                     <option value="{{ $post_type->id }}">{{ $post_type->name }}</option>
                                 @endforeach
                             </select>
