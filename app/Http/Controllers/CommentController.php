@@ -94,14 +94,6 @@ class CommentController extends Controller
     public function test()
     {
         $comment = Comment::first();
-        dd($comment->likes);
-        $user = User::first();
-        $user_like = $user->likes()->create([
-            'is_liked' => true,
-            'likable_type' => Comment::class,
-            'likable_id' => $comment->id
-        ]);
-        dd($user_like);
         $like = $comment->likes()->create([
             'is_liked' => true,
             'user_id' => \auth()->user()->id
