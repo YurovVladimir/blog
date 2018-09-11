@@ -21,9 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/factorial', 'TestController@fact')->name('factorial');
 Route::get('/validate', 'TestController@notString')->name('not_string');
 Route::resource('posts', 'PostController');
+
+Route::post('comments/{comment}/likes', 'CommentController@like');
+Route::get('comments/{comment}/likes', 'CommentController@getLikes');
 Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
+
 Route::get('/img', 'TestController@image')->name('image');
 
 Route::prefix('make_consult')->group(function (){
@@ -33,4 +37,4 @@ Route::prefix('make_consult')->group(function (){
     Route::post('upload_file', 'MakeConsultController@uploadFile')->name('uploadFile');
 });
 
-Route::get('comment/test', 'CommentController@test');
+

@@ -48,8 +48,11 @@
             @endif
         </div>
         <div class="card-footer">
-            <div class="color-default" style="position: absolute; bottom: 5px; right: 10px">
-                <i class="now-ui-icons ui-2_favourite-28 liked" data-comment_id="{{ $comment->id ?? 0 }}"></i> {{  }}
+            <div style="position: absolute; bottom: 5px; right: 10px">
+                <i class="fa @if(isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-info fa-heart
+                @else text-default fa-heart-o @endif liked" aria-hidden="false"
+                   data-comment_id="{{ $comment->id ?? 0 }}"></i>
+                <span class="count">{{ isset($comment) ? $comment->likes->where('is_liked', true)->count() : '' }}</span>
             </div>
         </div>
     </div>

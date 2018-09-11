@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Http\Requests\CommRequest;
-use App\Models\User;
+use App\Models\Comment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class CommentController extends Controller
 {
@@ -91,13 +90,30 @@ class CommentController extends Controller
         return response()->json(($comment->delete()), 204);
     }
 
-    public function test()
+    /**
+     * @param Comment $comment
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function like(Comment $comment, Request $request)
     {
-        $comment = Comment::first();
-        $like = $comment->likes()->create([
-            'is_liked' => true,
+        $is_liked = $request->is_liked == "true" ? true : false;
+        $comment->likes()->firstOrCreate([
             'user_id' => \auth()->user()->id
+        ])->update([
+            'is_liked' => $is_liked,
         ]);
-        dd($like);
+        return response()->json($is_liked);
+    }
+
+    /**
+     * @param Comment $comment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getLikes(Comment $comment)
+    {
+        return response()->json([
+            'count' => $comment->likes()->where('is_liked', true)->count()
+        ]);
     }
 }
