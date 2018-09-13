@@ -9,6 +9,7 @@ require('./bootstrap');
 
 require('./now-ui-kit');
 
+swall = require('sweetalert2');
 
 window.Vue = require('vue');
 

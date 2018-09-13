@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     /**
+     * PostController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'like', 'show');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -124,5 +132,32 @@ class PostController extends Controller
         if (Storage::exists($post->image)) {
             Storage::delete($post->image);
         }
+    }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function like(Post $post, Request $request)
+    {
+        $is_liked = $request->is_liked == "true" ? true : false;
+        $post->likes()->firstOrCreate([
+            'user_id' => \auth()->user()->id
+        ])->update([
+            'is_liked' => $is_liked,
+        ]);
+        return response()->json($is_liked);
+    }
+
+    /**
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getLikes(Post $post)
+    {
+        return response()->json([
+            'count' => $post->likes()->where('is_liked', true)->count()
+        ]);
     }
 }

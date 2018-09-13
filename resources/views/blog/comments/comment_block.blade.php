@@ -22,9 +22,9 @@
                 </p>
                 <textarea style="display: none" id="comment_{{ $comment->id ?? 0 }}"
                           class="form-control">{{ $comment->text ?? ''}}</textarea>
-                <div align="right">
+                <div align="center">
                     <button type="submit"
-                            class="btn btn-default btn-round save_comment"
+                            class="btn btn-warning btn-round save_comment"
                             data-comment_id="{{ $comment->id ?? 0}}"
                             style="display: none">
                         <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать комментарий
@@ -33,14 +33,14 @@
             </div>
             @php $user = auth()->user()  @endphp
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="btn btn-default btn-icon btn-round btn-sm delete_comment"
+                <button class="btn btn-info btn-icon btn-round btn-sm delete_comment"
                         data-comment_id="{{ $comment->id ?? 0 }}"
                         style="position: absolute; top: 0; right: 5px">
                     <i class="fa fa-times"></i>
                 </button>
             @endif
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="btn btn-default btn-icon btn-round btn-sm edit_comment"
+                <button class="btn btn-info btn-icon btn-round btn-sm edit_comment"
                         data-comment_id="{{ $comment->id ?? 0 }}"
                         style="position: absolute; top: 0; right: 38px">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -48,11 +48,13 @@
             @endif
         </div>
         <div class="card-footer">
-            <div style="position: absolute; bottom: 5px; right: 10px">
-                <i class="fa @if(isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-info fa-heart
-                @else text-default fa-heart-o @endif liked" aria-hidden="false"
-                   data-comment_id="{{ $comment->id ?? 0 }}"></i>
+            <div style="position: absolute; bottom: 5px; right: 7px">
+                <button class="btn btn-info btn-round btn-sm liked"
+                        data-comment_id="{{ $comment->id ?? 0 }}">
+                <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
+                @else text-default fa-heart-o @endif" aria-hidden="false"></i>
                 <span class="count">{{ isset($comment) ? $comment->likes->where('is_liked', true)->count() : '' }}</span>
+                </button>
             </div>
         </div>
     </div>

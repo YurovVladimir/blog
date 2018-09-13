@@ -11,34 +11,6 @@
                             <h1 class="title"> You should be here!</h1>
                             <h5 class="description">5,000 capacity venue, holding some of the latest technology lighting with a 24 colour laser system Amnesia is one of the islands most legendary clubs.</h5>
                         </div>
-                        <div class="col-md-10 ml-auto mr-auto">
-                            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-                                <div class="card-body">
-                                    <form method="" action="">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <input type="text" value="" placeholder="Full Name" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <input type="email" value="" placeholder="Your Email" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <input type="password" value="" placeholder="Password" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <a class="btn btn-info btn-round" href="{{ url('/posts') }}">Show posts</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

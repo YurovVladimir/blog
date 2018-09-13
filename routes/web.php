@@ -20,9 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/factorial', 'TestController@fact')->name('factorial');
 Route::get('/validate', 'TestController@notString')->name('not_string');
+
+Route::post('posts/{post}/likes', 'PostController@like')->middleware('auth');
+Route::get('posts/{post}/likes', 'PostController@getLikes');
 Route::resource('posts', 'PostController');
 
-Route::post('comments/{comment}/likes', 'CommentController@like');
+Route::post('comments/{comment}/likes', 'CommentController@like')->middleware('auth');
 Route::get('comments/{comment}/likes', 'CommentController@getLikes');
 Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',

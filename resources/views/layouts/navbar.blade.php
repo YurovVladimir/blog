@@ -41,6 +41,9 @@
                         </div>
                     </li>
                 @endguest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/posts') }}">Show posts</a>
+                </li>
             </ul>
         </div>
     </div>
