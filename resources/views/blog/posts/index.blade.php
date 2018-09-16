@@ -31,7 +31,7 @@
                                 </p>
 
                                 <div class="author">
-                                    <img src="{{ $post->user->avatar ?? '/img/default_avatar.jpg'}}" alt="..."
+                                    <img src="{{ isset($post) ? Storage::url($post->user->avatar) : '/img/default_avatar.jpg'}}" alt="..."
                                          class="avatar img-raised">
                                     <span>{{ $post->user->name ?? '' }}</span>
                                 </div>

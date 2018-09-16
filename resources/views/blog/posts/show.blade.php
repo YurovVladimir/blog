@@ -53,7 +53,7 @@
                         <a class="pull-left author" href="#pablo">
                             <div class="avatar">
                                 <img class="media-object img-raised avatar" alt="64x64"
-                                     src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}"
+                                     src="{{ isset(auth()->user()->avatar) ? Storage::url(auth()->user()->avatar) : '/img/default_avatar.jpg'}}"
                                      style="position: relative; right: 3vh">
                             </div>
                         </a>
