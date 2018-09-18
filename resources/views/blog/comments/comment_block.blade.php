@@ -3,7 +3,7 @@
         <div class="media">
             <div class="avatar">
                 <img class="media-object img-raised avatar avatar_a"
-                     src="{{ $comment->user->avatar ?? '/img/default_avatar.jpg'}}">
+                     src="{{isset($comment) ? Storage::url($comment->user->avatar) : '/img/default_avatar.jpg'}}">
             </div>
             <div class="media-body">
                 <h5 class="media-heading user_name">
