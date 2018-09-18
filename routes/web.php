@@ -31,6 +31,8 @@ Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
 
+Route::resource('accounts', 'AccountController');
+
 Route::get('/img', 'TestController@image')->name('image');
 
 Route::prefix('make_consult')->group(function (){

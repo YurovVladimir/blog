@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.38 on 2018-09-13 20:58:57.
+ * Generated for Laravel 5.6.38 on 2018-09-13 21:27:00.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13521,6 +13521,18 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Laravel\Nova { 
+
+    /**
+     * 
+     *
+     */ 
+    class Nova {
+         
+    }
+ 
+}
+
 namespace Maatwebsite\Excel\Facades { 
 
     /**
@@ -15981,6 +15993,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Nova extends \Laravel\Nova\Nova {}
 
     class Excel extends \Maatwebsite\Excel\Facades\Excel {}
  

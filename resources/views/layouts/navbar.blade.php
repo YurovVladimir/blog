@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="500">
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="70">
     <div class="container">
 
         <div class="navbar-translate">
@@ -17,10 +17,10 @@
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" data-background-color="black" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" data-background-color="black" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">
@@ -29,7 +29,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" data-background-color="black" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -42,7 +42,7 @@
                     </li>
                 @endguest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/posts') }}">Show posts</a>
+                    <a class="nav-link" data-background-color="black" href="{{ url('/posts') }}">Show posts</a>
                 </li>
             </ul>
         </div>
