@@ -1,35 +1,43 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="70">
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="20">
     <div class="container">
 
         <div class="navbar-translate">
-            <a class="navbar-brand" href="/" rel="tooltip" title="" data-placement="bottom">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item" data-background-color="black">
+                <a class="nav-link" href="/" rel="tooltip" title="" data-placement="bottom">
+                    {{ config('app.name', 'Home page') }}
+                </a>
+               </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                    aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
         </div>
 
-        <div class="collapse navbar-collapse has-image" id="navigation" data-color="orange" data-nav-image="/img/blurred-image-1.jpg">
+        <div class="collapse navbar-collapse has-image" id="navigation" data-color="orange"
+             data-nav-image="/img/blurred-image-1.jpg">
             <ul class="navbar-nav ml-auto">
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" data-background-color="black" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <li class="nav-item" data-background-color="black">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-background-color="black" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <li class="nav-item" data-background-color="black">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="nav-item dropdown" data-background-color="black">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" data-background-color="black" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('users.show', ['id' => auth()->user()->id]) }}"> My
+                                profile </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -41,8 +49,8 @@
                         </div>
                     </li>
                 @endguest
-                <li class="nav-item">
-                    <a class="nav-link" data-background-color="black" href="{{ url('/posts') }}">Show posts</a>
+                <li class="nav-item" data-background-color="black">
+                    <a class="nav-link" href="{{ url('/posts') }}">Show posts</a>
                 </li>
             </ul>
         </div>

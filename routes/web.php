@@ -31,7 +31,7 @@ Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
 
-Route::resource('accounts', 'AccountController');
+Route::resource('users', 'UserController');
 
 Route::get('/img', 'TestController@image')->name('image');
 

@@ -1,14 +1,25 @@
+<style>
+    a:hover {
+        text-decoration: none !important;
+    }
+</style>
+
 <div class="card section-comments comment_block" data-comment_id="{{ $comment->id ?? 0}}">
     <div class="media-area card-body">
         <div class="media">
-            <div class="avatar">
-                <img class="media-object img-raised avatar avatar_a"
-                     src="{{isset($comment) ? Storage::url($comment->user->avatar) : '/img/default_avatar.jpg'}}">
-            </div>
+            <a class="pull-left nav-link" href="{{ isset($comment) ? route('users.show', ['id' => $comment->user->id]) : '' }}">
+                <div class="avatar">
+                    <img class="media-object img-raised avatar avatar_a" alt="64x64"
+                         src="{{isset($comment) ? Storage::url($comment->user->avatar) : '/img/default_avatar.jpg'}}">
+                </div>
+            </a>
             <div class="media-body">
+
                 <h5 class="media-heading user_name">
-                    <font style="vertical-align: inherit;">{{ $comment->user->name ?? '' }}
-                    </font>
+                    <a href="{{ isset($comment) ? route('users.show', ['id' => $comment->user->id]) : '' }}">
+                        <font style="vertical-align: inherit;">{{ $comment->user->name ?? auth()->user()->name ?? '' }}
+                        </font>
+                    </a>
                     <small class="text-muted created_at">
                         <font style="vertical-align: inherit;">
                             {{ isset($comment) ? $comment->created_at->diffForHumans() : '' }}
@@ -51,9 +62,9 @@
             <div style="position: absolute; bottom: 5px; right: 7px">
                 <button class="btn btn-info btn-round btn-sm liked"
                         data-comment_id="{{ $comment->id ?? 0 }}">
-                <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
+                    <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
                 @else text-default fa-heart-o @endif" aria-hidden="false"></i>
-                <span class="count">{{ isset($comment) ? $comment->likes->where('is_liked', true)->count() : '' }}</span>
+                    <span class="count">{{ isset($comment) ? $comment->likes->where('is_liked', true)->count() : '' }}</span>
                 </button>
             </div>
         </div>
