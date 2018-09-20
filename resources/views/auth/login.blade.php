@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('content')
     <div class="login-page">
@@ -46,14 +46,14 @@
                                                 </span>
                                     @endif
                                 </div>
-                                <div class="form-check" align="center">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"
+                                {{--<div class="form-check" align="center">--}}
+                                    {{--<label class="form-check-label">--}}
+                                        <input type="checkbox" name="remember"
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <span class="form-check-sign"></span>
                                         {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                                    {{--</label>--}}
+                                {{--</div>--}}
                                 <div class="card-footer text-center">
                                     <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Login') }}</button>
                                 </div>

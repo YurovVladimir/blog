@@ -52,6 +52,15 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Relation to Tag
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -61,9 +70,6 @@ class Post extends Model
         return $this->belongsTo(PostType::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -75,13 +81,5 @@ class Post extends Model
     public function likes()
     {
         return $this->morphMany(Like::class, 'likable');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function tags()
-    {
-        return $this->morphMany(Tag::class, 'name');
     }
 }

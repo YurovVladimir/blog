@@ -23,10 +23,12 @@
 </head>
 <body>
 @include('layouts.navbar')
-<div id="app">
+<div>
     @yield('content')
 </div>
+<div id="app">
 
+</div>
 @yield('js')
 </body>
 </html>

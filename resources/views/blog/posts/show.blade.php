@@ -4,6 +4,7 @@
     <script src="{{ asset('js/comment.js') }}" defer></script>
 @endsection
 
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -50,7 +51,7 @@
                     <input type="hidden" id="post_id" value="{{ $post->id }}" name="post_id">
                     @csrf
                     <div class="media media-post">
-                        <a class="pull-left author" href="#pablo">
+                        <a class="pull-left author" href="{{ route('users.show', ['id' => auth()->user()->id])}}">
                             <div class="avatar">
                                 <img class="media-object img-raised avatar" alt="64x64"
                                      src="{{ isset(auth()->user()->avatar) ? Storage::url(auth()->user()->avatar) : '/img/default_avatar.jpg'}}"
@@ -82,8 +83,7 @@
 
                 <section class="comment-list">
                     @foreach($post->comments->sortByDesc('id') as $comment)
-
-                        @include('blog.comments.comment_block')
+                            @include('blog.comments.comment_block')
                     @endforeach
                 </section>
             </div>

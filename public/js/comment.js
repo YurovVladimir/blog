@@ -67,9 +67,8 @@ $('.store_comment').on('click', function () {
             template_comment.find("[data-comment_id=0]").attr("data-comment_id", comment.id);
             template_comment.find(".comment_0").removeClass("comment_0").addClass("comment_" + comment.id).text(comment.text);
             template_comment.find("#comment_0").attr("id", "comment_" + comment.id).val(comment.text);
-            template_comment.find(".avatar_a").attr("src", "/img/default_avatar.jpg");
-            template_comment.find(".created_at").text("now");
-            template_comment.find(".user_name strong").text(comment.user.name);
+            template_comment.find(".avatar_a").attr("src", "/storage/" + comment.user.avatar);
+            template_comment.find(".created_at font").text("now");
             $(".comment-list").prepend(template_comment);
         },
         error: function (error) {
@@ -93,6 +92,9 @@ body.on('click', '.liked', function () {
         success: function (data) {
             let count_comm = self.find(".count"),
                 count = parseInt(count_comm.text());
+            if (isNaN(count)) {
+                count = 0;
+            }
             if (data) {
                 tag_i.addClass('fa-heart').addClass('text-danger').removeClass('fa-heart-o').removeClass('text-default');
                 count_comm.text(count + 1)

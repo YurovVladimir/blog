@@ -24,13 +24,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tag extends Model
 {
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function name()
+    public function posts()
     {
-        return $this->morphTo();
+        return $this->belongsToMany(Post::class);
     }
-
+    //
 }
