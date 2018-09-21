@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="position: relative; top: 10vh">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -35,7 +35,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="postTypeSelect">Example select</label>
+                            <label for="postTypeSelect">Тип статьи</label>
                             <select class="form-control  {{ $errors->has('post_type_id') ? ' is-invalid' : '' }}"
                                     id="postTypeSelect" name="post_type_id">
                                 @foreach(\App\Models\PostType::all() as $post_type)
@@ -52,7 +52,10 @@
                              class="img-fluid">
                         <hr class="my-4">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Example file input</label>
+                            <div class="btn btn-raised btn-round btn-default btn-file">
+                                <i class="fa fa-file-image-o"></i>
+                                <label for="exampleFormControlFile1" style="margin-bottom: 0">Прикрепить файл</label>
+                            </div>
                             <input type="file"
                                    class="form-control-file {{ $errors->has('image') ? ' is-invalid' : ''  }}"
                                    name="image" id="imageInput">
@@ -62,7 +65,11 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Готово</button>
+                        <div align="center">
+                            <button class="btn btn-default btn-round btn-lg" type="submit">
+                                <i class="fa fa-undo"></i> Готово
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

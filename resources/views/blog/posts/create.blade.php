@@ -21,10 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descriptionInput">Статья</label>
-                            <textarea class="form-control  {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                      id="descriptionInput" name="description" rows="3">
-                                {{ old('description') }}
-                            </textarea>
+                            <textarea class="form-control  {{ $errors->has('description') ? ' is-invalid' : '' }}" id="descriptionInput" name="description" rows="3">{{ old('description') }}</textarea>
                             @if ($errors->has('description'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ $errors->first('description') }}
@@ -47,6 +44,7 @@
                         </div>
                         <div class="form-group">
                             <div class="btn btn-raised btn-round btn-default btn-file">
+                                <i class="fa fa-file-image-o"></i>
                                 <label for="exampleFormControlFile1" style="margin-bottom: 0">Прикрепить файл</label>
                             </div>
                             <input type="file"
@@ -58,7 +56,11 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-outline-dark btn-lg btn-block"> Создать</button>
+                        <div align="center">
+                        <button class="btn btn-default btn-round btn-lg" type="submit">
+                            <i class="fa fa-floppy-o"></i> Создать
+                        </button>
+                        </div>
                     </form>
                 </div>
             </div>

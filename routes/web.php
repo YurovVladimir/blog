@@ -42,4 +42,8 @@ Route::prefix('make_consult')->group(function (){
     Route::post('upload_file', 'MakeConsultController@uploadFile')->name('uploadFile');
 });
 
+Route::get('login/facebook', 'LoginController@redirectToProviderFacebook')->name('login_facebook');
+Route::get('login/facebook/callback', 'LoginController@handleProviderCallbackFacebook');
 
+Route::get('login/google', 'LoginController@redirectToProviderGoogle')->name('login_google');
+Route::get('login/google/callback', 'LoginController@handleProviderCallbackGoogle');

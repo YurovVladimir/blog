@@ -17,7 +17,7 @@
                             <div class="col-md-4">
                                 <div class="card-image">
                                     <img class="img img-raised rounded"
-                                         src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}" >
+                                         src="{{ isset($post->image) ? asset(Storage::url($post->image)) : '/img/default_image.jpg'}}" >
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -31,9 +31,11 @@
                                 </p>
 
                                 <div class="author">
-                                    <img src="{{ isset($post) ? Storage::url($post->user->avatar) : '/img/default_avatar.jpg'}}" alt="..."
+                                    <img src="{{ isset($post->user->avatar) ? Storage::url($post->user->avatar) : '/img/default_avatar.jpg'}}" alt="..."
                                          class="avatar img-raised">
-                                    <span>{{ $post->user->name ?? '' }}</span>
+                                        <a href="{{ isset($post) ? route('users.show', ['id' => $post->user->id]) : '' }}">
+                                        <span>{{ $post->user->name ?? '' }}</span>
+                                        </a>
                                 </div>
 
                             </div>
@@ -46,6 +48,3 @@
     </div>
 
 @endsection
-
-
-

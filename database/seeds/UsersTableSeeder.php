@@ -22,6 +22,7 @@ class UsersTableSeeder extends BaseTableSeeder
             \Storage::disk('public')->put($file_name, $contents);
             User::create([
                 'name' => $this->faker->name,
+                'description' => $this->faker->text($maxNbChars = 600),
                 'email' =>$this->faker->email,
                 'password' => $this->faker->password,
                 'avatar' => $file_name,

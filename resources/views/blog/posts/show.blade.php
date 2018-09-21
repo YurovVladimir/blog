@@ -6,18 +6,10 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container" style="position: relative; top: 10vh">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-                @if(auth()->user() && auth()->user()->id == $post->user_id)
-                    <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-dark">
-                            Удалить пост
-                        </button>
-                    </form>
-                @endif
+
                 <input type="hidden" id="post_id" value="{{ $post->id }}">
                 <h1 class="display-3" align="center">
                     {{ ucfirst($post->name) }}
@@ -27,10 +19,28 @@
                 </p>
                 <hr class="my-4 ">
                 <div class="text-center">
-                    <img src="{{ preg_match('/^http/', $post->image) ? $post->image : asset(Storage::url($post->image)) }}"
+                    <img src="{{ isset($post->image) ? asset(Storage::url($post->image)) : '/img/default_image.jpg'}}"
                          class="img-fluid media-middle">
                 </div>
                 <hr class="my-4">
+                @if(auth()->user() && auth()->user()->id == $post->user_id)
+                    <div align="right">
+                    <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
+
+                        <a role="button" class="btn btn-simple btn-success btn-round"
+                           href="{{ route('posts.edit',['id' => $post->id]) }}">
+                            <i class="fa fa-pencil-square-o"></i> Редактироваь пост
+                        </a>
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-simple btn-danger btn-round">
+                            <i class="fa fa-window-close-o"></i>
+                            Удалить пост
+                        </button>
+                    </form>
+                    </div>
+                    @endif
+
                 <div align="center">
                     <button class="btn btn-info btn-round liked_post" data-post_id="{{ $post->id ?? 0 }}">
                         <i class="fa @if(auth()->user() && isset($post) && $post->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-thumbs-up fa-2x
@@ -38,14 +48,8 @@
                         <span class="count_post">{{ isset($post) ? $post->likes->where('is_liked', true)->count() : '' }}</span>
                     </button>
                 </div>
-                <hr class="my-4">
 
-                @if(auth()->user() && auth()->user()->id == $post->user_id)
-                    <a role="button" class="btn btn-outline-dark btn-lg btn-block"
-                       href="{{ route('posts.edit',['id' => $post->id]) }}"> Редактироваь пост
-                    </a>
-                    <hr class="my-4 ">
-                @endif
+                <hr class="my-4">
 
                 @if(auth()->user())
                     <input type="hidden" id="post_id" value="{{ $post->id }}" name="post_id">

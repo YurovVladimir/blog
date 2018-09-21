@@ -8,15 +8,17 @@
 
             <h4 class="card-title text-center">{{ __('Register') }}</h4>
             <div class="social text-center">
-                <button class="btn btn-icon btn-round btn-twitter">
-                    <i class="fab fa-twitter"></i>
-                </button>
-                <button class="btn btn-icon btn-round btn-dribbble">
-                    <i class="fab fa-dribbble"></i>
-                </button>
-                <button class="btn btn-icon btn-round btn-facebook">
-                    <i class="fab fa-facebook"> </i>
-                </button>
+                <a role="button" class="btn btn-info btn-icon btn-simple btn-round">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a role="button" class="btn btn-danger btn-icon btn-simple btn-round"
+                href="{{ route('login_google') }}">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                <a role="button" class="btn btn-info btn-icon btn-simple btn-round"
+                href="{{ route('login_facebook') }}">
+                    <i class="fa fa-facebook"> </i>
+                </a>
                 <h5 class="card-description"> or be classical </h5>
             </div>
             <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">

@@ -10,7 +10,7 @@
             <a class="pull-left nav-link" href="{{ isset($comment) ? route('users.show', ['id' => $comment->user->id]) : '' }}">
                 <div class="avatar">
                     <img class="media-object img-raised avatar avatar_a" alt="64x64"
-                         src="{{isset($comment) ? Storage::url($comment->user->avatar) : '/img/default_avatar.jpg'}}">
+                         src="{{isset($comment->user->avatar) ? Storage::url($comment->user->avatar) : '/img/default_avatar.jpg'}}">
                 </div>
             </a>
             <div class="media-body">
