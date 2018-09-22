@@ -9,6 +9,7 @@
             <h4 class="card-title text-center">{{ __('Register') }}</h4>
             <div class="social text-center">
                 <a role="button" class="btn btn-info btn-icon btn-simple btn-round">
+                {{--href="{{ route('login_vk') }}">--}}
                     <i class="fa fa-vk"></i>
                 </a>
                 <a role="button" class="btn btn-danger btn-icon btn-simple btn-round"

@@ -29,5 +29,6 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
         $token = $user->token;
+        dd($user);
     }
 }

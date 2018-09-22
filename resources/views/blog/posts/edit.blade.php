@@ -23,15 +23,11 @@
                         <div class="form-group">
                             <label for="descriptionInput">Статья</label>
                             <textarea class="form-control  {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                      id="descriptionInput" name="description" rows="3">
-                                {{ $post->description }}
-
-                            </textarea>
+                                      id="descriptionInput" name="description" rows="3">{{ $post->description }}</textarea>
                             @if ($errors->has('description'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ $errors->first('description') }}
                                 </div>
-                                </span>
                             @endif
                         </div>
                         <div class="form-group">

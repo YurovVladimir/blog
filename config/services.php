@@ -44,6 +44,6 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'login/google/callback'
+        'redirect' => 'https://vladimiryurov.info/login/google/callback'
     ]
 ];

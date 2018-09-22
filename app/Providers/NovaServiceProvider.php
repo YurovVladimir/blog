@@ -7,7 +7,6 @@ use App\Nova\Post;
 use App\Nova\PostType;
 use App\Nova\Tag;
 use App\Nova\User;
-use DemeterChain\C;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -49,7 +48,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                //
+                'vovamadlion@yandex.ru',
             ]);
         });
     }
@@ -84,5 +83,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     *
+     */
+    public function resources()
+    {
+        Nova::resourcesIn(app_path('Nova'));
     }
 }
