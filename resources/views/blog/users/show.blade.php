@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('js')
+    <script src="{{ asset('js/comment.js') }}" defer></script>
+@endsection
+
 @section('content')
     <div class="profile-page">
 
@@ -29,7 +34,7 @@
                         </div>
                         <div class="social-description">
                             <h2>26</h2>
-                            <p>Likes</p>
+                            <p>Followers</p>
                         </div>
                         <div class="social-description">
                             <h2>{{ $user->comments->count() }}</h2>
@@ -44,22 +49,23 @@
                 <div class="container">
                     <div class="button-container">
                         <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-                        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title=""
-                           data-original-title="Follow me on Twitter">
-                            <i class="fa fa-twitter"></i>
+                        <a href="#button" class="btn btn-warning btn-round btn-lg btn-icon last_post" rel="tooltip"
+                           data-original-title="Show last post">
+                            <i class="fa fa-newspaper-o"></i>
                         </a>
-                        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title=""
-                           data-original-title="Follow me on Instagram">
-                            <i class="fa fa-instagram"></i>
+                        <a href="#button" class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"
+                           data-original-title="Show all posts">
+                            <i class="fa fa-tasks"></i>
                         </a>
                     </div>
 
                     <h3 class="title">About me</h3>
                     @if(auth()->user() && auth()->user()->id == $user->id)
                         <div align="right">
-                            <a role="button" class="btn btn-default btn-round btn-icon"
-                               href="{{ route('users.edit', ['id' => $user->id]) }}">
-                                <i class="fa fa-commenting-o"></i>
+                            <a role="button" class="btn btn-default btn-round btn-simple btn-icon"
+                               href="{{ route('users.edit', ['id' => $user->id]) }}" rel="tooltip"
+                               data-original-title="Edit my profile">
+                                <i class="fa fa-user-circle"></i>
                             </a>
                         </div>
                     @endif

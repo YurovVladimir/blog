@@ -166,3 +166,19 @@ function showAuthAlert() {
     });
 }
 
+$('.last_post').click(function () {
+    showPostAlert();
+});
+
+function showPostAlert() {
+    swall({
+        title: 'Sweet!',
+        text: '{{ $user->posts->last()->description }}',
+        imageUrl: 'https://unsplash.it/400/200',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        animation: false
+    });
+}
+
