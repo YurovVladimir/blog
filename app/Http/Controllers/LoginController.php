@@ -2,33 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-
-    public function redirectToProviderFacebook()
+    /**
+     * @param $provider
+     * @return mixed
+     */
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function redirectToProviderGoogle()
+    /**
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleProviderCallback($provider)
     {
-        return Socialite::driver('google')->redirect();
-
-    }
-
-    public function handleProviderCallbackFacebook()
-    {
-        $user = Socialite::driver('facebook')->user();
-        $token = $user->token;
-    }
-
-    public function handleProviderCallbackGoogle()
-    {
-        $user = Socialite::driver('google')->user();
-        $token = $user->token;
-        dd($user);
+        $user = Socialite::driver($provider)->user();
+        $localUser = User::where('email', $user->getEmail())->first();
+        if (!$localUser) {
+            $localUser = User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => \Hash::make($user->getName())
+            ]);
+        }
+        \Auth::login($localUser);
+        return redirect()->intended('/');
     }
 }

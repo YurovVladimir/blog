@@ -67,7 +67,6 @@ $('.store_comment').on('click', function () {
             template_comment.find("[data-comment_id=0]").attr("data-comment_id", comment.id);
             template_comment.find(".comment_0").removeClass("comment_0").addClass("comment_" + comment.id).text(comment.text);
             template_comment.find("#comment_0").attr("id", "comment_" + comment.id).val(comment.text);
-            template_comment.find(".avatar_a").attr("src", "/storage/" + comment.user.avatar);
             template_comment.find(".created_at font").text("now");
             $(".comment-list").prepend(template_comment);
         },
@@ -166,19 +165,19 @@ function showAuthAlert() {
     });
 }
 
-$('.last_post').click(function () {
-    showPostAlert();
-});
-
-function showPostAlert() {
-    swall({
-        title: 'Sweet!',
-        text: '{{ $user->posts->last()->description }}',
-        imageUrl: 'https://unsplash.it/400/200',
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-        animation: false
-    });
-}
+// $('.last_post').click(function () {
+//     showPostAlert();
+// });
+//
+// function showPostAlert() {
+//     swall({
+//         title: 'Sweet!',
+//         text: '{{ $user->posts->last()->description }}',
+//         imageUrl: 'https://unsplash.it/400/200',
+//         imageWidth: 400,
+//         imageHeight: 200,
+//         imageAlt: 'Custom image',
+//         animation: false
+//     });
+// }
 

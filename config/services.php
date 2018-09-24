@@ -38,12 +38,18 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'login/facebook/callback'
+        'redirect' => 'https://vladimiryurov.info/login/facebook/callback'
     ],
 
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'https://vladimiryurov.info/login/google/callback'
-    ]
+    ],
+
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'redirect' => 'https://vladimiryurov.info/login/vkontakte/callback'
+    ],
 ];

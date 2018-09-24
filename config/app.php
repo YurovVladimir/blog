@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\NovaServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...

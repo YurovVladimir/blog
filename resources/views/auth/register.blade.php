@@ -8,16 +8,16 @@
 
             <h4 class="card-title text-center">{{ __('Register') }}</h4>
             <div class="social text-center">
-                <a role="button" class="btn btn-info btn-icon btn-simple btn-round">
-                {{--href="{{ route('login_vk') }}">--}}
+                <a role="button" class="btn btn-info btn-icon btn-simple btn-round"
+                   href="{{ route('social_login', ['provider' => 'vkontakte']) }}">
                     <i class="fa fa-vk"></i>
                 </a>
                 <a role="button" class="btn btn-danger btn-icon btn-simple btn-round"
-                href="{{ route('login_google') }}">
+                href="{{ route('social_login', ['provider' => 'google']) }}">
                     <i class="fa fa-google-plus"></i>
                 </a>
                 <a role="button" class="btn btn-info btn-icon btn-simple btn-round"
-                href="{{ route('login_facebook') }}">
+                href="{{ route('social_login', ['provider' => 'facebook']) }}">
                     <i class="fa fa-facebook"> </i>
                 </a>
                 <h5 class="card-description"> or be classical </h5>
