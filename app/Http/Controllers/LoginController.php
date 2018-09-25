@@ -24,11 +24,13 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
-        $localUser = User::where('email', $user->getEmail())->first();
+        $email = $user->getEmail() ?? $user->email ??
+            $user->accessTokenResponseBody['email'] ?? $user->getId() . "@noemail-$provider.com";
+        $localUser = User::where('email', $email)->first();
         if (!$localUser) {
             $localUser = User::create([
                 'name' => $user->getName(),
-                'email' => $user->getEmail(),
+                'email' => $email,
                 'password' => \Hash::make($user->getName())
             ]);
         }
