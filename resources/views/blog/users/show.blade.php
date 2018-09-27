@@ -30,8 +30,8 @@
                             <h2>{{ $user->posts->count() }}</h2>
                             <p>Posts</p>
                         </div>
-                        <div class="social-description">
-                            <h2>26</h2>
+                        <div class="social-description count_follow">
+                            <h2>{{ $user->followers->count() }}</h2>
                             <p>Followers</p>
                         </div>
                         <div class="social-description">
@@ -46,9 +46,14 @@
             <div class="section">
                 <div class="container">
                     <div class="button-container">
-                        <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-                        <a class="btn btn-warning btn-round btn-lg btn-icon last_post" rel="tooltip"
-                           data-original-title="Show last post" onclick="showPostAlert()">
+                        <a class="btn btn-primary btn-round btn-simple btn-lg unfollow"
+                            style="display: none" data-user_id="{{ $user->id ?? 0 }}">
+                            Unfollow
+                        </a>
+                        <a class="btn btn-primary btn-round btn-lg follow" data-user_id="{{ $user->id ?? 0 }}">
+                            Follow</a>
+                        <a class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"
+                           data-original-title="Show last post">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                         <a href="#button" class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"

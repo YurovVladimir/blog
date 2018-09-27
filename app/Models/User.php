@@ -74,6 +74,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follow_user', 'user_id', 'follow_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followed()
+    {
+        return $this->belongsToMany(User::class, 'follow_user', 'follow_id', 'user_id');
+    }
 }
 
 

@@ -88,4 +88,26 @@ class UserController extends Controller
     {
         //
     }
+
+//    public function follow(User $user, Request $request)
+//    {
+//        $is_liked = $request->is_liked == "true" ? true : false;
+//        $comment->likes()->firstOrCreate([
+//            'user_id' => \auth()->user()->id
+//        ])->update([
+//            'is_liked' => $is_liked,
+//        ]);
+//        return response()->json($is_liked);
+//    }
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFollowers(User $user)
+    {
+        return response()->json([
+            'count' => $user->followed()->count()
+        ]);
+    }
 }
