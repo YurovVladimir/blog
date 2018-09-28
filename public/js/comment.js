@@ -166,12 +166,60 @@ function showAuthAlert() {
 }
 
 body.on('click', '.follow', function () {
-    $('.unfollow').show();
-    $('.follow').hide();
+    let self = $(this),
+        user_id = self.attr('data-user_id'),
+        token = $('meta[name=csrf-token]').attr('content');
+
+
+    $.ajax({
+        type: "POST",
+        url: "/users/" + user_id + "/follow",
+        data: {
+            '_token': token,
+        },
+        success: function (data) {
+            let count_follow = $(".count_follow h2"),
+                count = parseInt(count_follow.text());
+            self.removeClass('follow').addClass('unfollow').text('Unfollow')
+            count_follow.text(count + 1);
+        },
+        statusCode: {
+            401: function () {
+                showAuthAlert();
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 });
 
 
 body.on('click', '.unfollow', function () {
-    $('.follow').show();
-    $('.unfollow').hide();
+    let self = $(this),
+        user_id = self.attr('data-user_id'),
+        token = $('meta[name=csrf-token]').attr('content');
+
+
+    $.ajax({
+        type: "DELETE",
+        url: "/users/" + user_id + "/follow",
+        data: {
+            '_token': token,
+        },
+        success: function (data) {
+            let count_follow = $(".count_follow h2"),
+                count = parseInt(count_follow.text());
+            self.removeClass('unfollow').addClass('follow').text('Follow')
+            count_follow.text(count - 1);
+        },
+        statusCode: {
+            401: function () {
+                showAuthAlert();
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 });

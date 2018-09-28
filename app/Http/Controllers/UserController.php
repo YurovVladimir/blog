@@ -48,7 +48,13 @@ class UserController extends Controller
     {
         return response()
             ->view('blog.users.show', [
-                'user' => $user->load('posts', 'comments')
+                'user' => $user->load([
+                    'posts',
+                    'comments',
+                    'followers' => function($query) {
+                        $query->distinct('id');
+                    }
+                ])
             ]);
     }
 
@@ -81,25 +87,34 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json(null, 204);
     }
 
-//    public function follow(User $user, Request $request)
-//    {
-//        $is_liked = $request->is_liked == "true" ? true : false;
-//        $comment->likes()->firstOrCreate([
-//            'user_id' => \auth()->user()->id
-//        ])->update([
-//            'is_liked' => $is_liked,
-//        ]);
-//        return response()->json($is_liked);
-//    }
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function follow(User $user)
+    {
+        $user->followers()->attach(auth()->user()->id);
+        return response()->json(null, 201);
+    }
 
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function unFollow(User $user)
+    {
+        $user->followers()->detach(auth()->user()->id);
+        return response()->json(null, 204);
+    }
     /**
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
@@ -107,7 +122,7 @@ class UserController extends Controller
     public function getFollowers(User $user)
     {
         return response()->json([
-            'count' => $user->followed()->count()
+            'count' => $user->followers
         ]);
     }
 }

@@ -31,8 +31,9 @@ Route::resource('comments', 'CommentController', ['only' => [
     'store', 'update', 'destroy',
 ]]);
 
-Route::post('users/{user}/followers', 'UserController@follow')->middleware('auth');
-Route::get('users/{user}/followers', 'UserController@getFollowers');
+Route::post('users/{user}/follow', 'UserController@follow')->middleware('auth');
+Route::get('users/{user}/follow', 'UserController@getFollowers');
+Route::delete('users/{user}/follow', 'UserController@unFollow')->middleware('auth');
 Route::resource('users', 'UserController');
 
 Route::get('/img', 'TestController@image')->name('image');

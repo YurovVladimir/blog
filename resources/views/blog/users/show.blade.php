@@ -46,12 +46,14 @@
             <div class="section">
                 <div class="container">
                     <div class="button-container">
-                        <a class="btn btn-primary btn-round btn-simple btn-lg unfollow"
-                            style="display: none" data-user_id="{{ $user->id ?? 0 }}">
-                            Unfollow
-                        </a>
-                        <a class="btn btn-primary btn-round btn-lg follow" data-user_id="{{ $user->id ?? 0 }}">
-                            Follow</a>
+                        @if(auth()->user() && isset($user) && $user->followers->where('id', \auth()->user()->id)->first())
+                            <a class="btn btn-primary btn-round btn-lg unfollow"
+                               data-user_id="{{ $user->id ?? 0 }}">
+                                Unfollow</a>
+                        @else
+                            <a class="btn btn-primary btn-round btn-lg follow" data-user_id="{{ $user->id ?? 0 }}">
+                                Follow</a>
+                        @endif
                         <a class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"
                            data-original-title="Show last post">
                             <i class="fa fa-newspaper-o"></i>
@@ -189,8 +191,8 @@
                                                                             <button class="btn btn-info btn-round btn-sm liked"
                                                                                     data-comment_id="{{ $comment->id ?? 0 }}">
                                                                                 <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id',
-                                                                                 \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
-                                                                                @else text-default fa-heart-o @endif"
+                                                             \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
+                                                            @else text-default fa-heart-o @endif"
                                                                                    aria-hidden="false"></i>
                                                                                 <span class="count">{{ isset($comment) ? $comment->likes->where('is_liked', true)->count() : '' }}</span>
                                                                             </button>
