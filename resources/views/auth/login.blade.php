@@ -46,14 +46,24 @@
                                                 </span>
                                     @endif
                                 </div>
-                                {{--<div class="form-check" align="center">--}}
-                                    {{--<label class="form-check-label">--}}
+                                <div class="text-center icon-white">
+                                    <a role="button" class="btn btn-white btn-icon btn-simple btn-round"
+                                       href="{{ route('social_login', ['provider' => 'vkontakte']) }}">
+                                        <i class="fa fa-vk"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
+                                       href="{{ route('social_login', ['provider' => 'google']) }}">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-white btn-icon btn-simple btn-round"
+                                       href="{{ route('social_login', ['provider' => 'facebook']) }}">
+                                        <i class="fa fa-facebook"> </i>
+                                    </a>
+                                </div>
                                         <input type="checkbox" name="remember"
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <span class="form-check-sign"></span>
                                         {{ __('Remember Me') }}
-                                    {{--</label>--}}
-                                {{--</div>--}}
                                 <div class="card-footer text-center">
                                     <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">{{ __('Login') }}</button>
                                 </div>

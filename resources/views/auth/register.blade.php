@@ -8,15 +8,15 @@
 
             <h4 class="card-title text-center">{{ __('Register') }}</h4>
             <div class="social text-center">
-                <a role="button" class="btn btn-info btn-icon btn-simple btn-round"
+                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
                    href="{{ route('social_login', ['provider' => 'vkontakte']) }}">
                     <i class="fa fa-vk"></i>
                 </a>
-                <a role="button" class="btn btn-danger btn-icon btn-simple btn-round"
+                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
                 href="{{ route('social_login', ['provider' => 'google']) }}">
-                    <i class="fa fa-google-plus"></i>
+                    <i class="fa fa-google-plus i-danger"></i>
                 </a>
-                <a role="button" class="btn btn-info btn-icon btn-simple btn-round"
+                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
                 href="{{ route('social_login', ['provider' => 'facebook']) }}">
                     <i class="fa fa-facebook"> </i>
                 </a>

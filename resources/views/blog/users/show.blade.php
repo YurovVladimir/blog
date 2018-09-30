@@ -82,19 +82,19 @@
                             <div class="nav-align-center">
                                 <ul class="nav nav-pills nav-pills-info nav-pills-just-icons" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#profile" role="tablist"
+                                        <a class="nav-link active" data-toggle="tab" href="#posts" role="tablist"
                                            rel="tooltip" data-original-title="All posts">
                                             <i class="fa fa-newspaper-o"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#home" role="tablist"
+                                        <a class="nav-link" data-toggle="tab" href="#comments" role="tablist"
                                            rel="tooltip" data-original-title="All comments">
                                             <i class="now-ui-icons location_world"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+                                        <a class="nav-link" data-toggle="tab" href="#followers" role="tablist">
                                             <i class="now-ui-icons design-2_ruler-pencil"></i>
                                         </a>
                                     </li>
@@ -103,7 +103,7 @@
 
                             <!-- Tab panes -->
                             <div class="tab-content gallery">
-                                <div class="tab-pane active" id="profile" role="tabpanel">
+                                <div class="tab-pane active" id="posts" role="tabpanel">
                                     <div class="row">
                                         <div class="col-md-12">
                                             @if (isset($user->posts))
@@ -121,20 +121,12 @@
                                                                     <a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ ucfirst($post->name) }}</a>
                                                                 </h3>
                                                                 <p class="card-description">
-                                                                    @php $text = substr($post->description, 0, 300) @endphp
+                                                                    @php $text = substr($post->description, 0, 370) @endphp
                                                                     {{ $text }} @if(strlen($text) < strlen($post->description))
                                                                         <a href="{{ route('posts.show', ['id' => $post->id]) }}">
                                                                             ... Read
                                                                             More </a> @endif
                                                                 </p>
-                                                                <div class="author">
-                                                                    <img src="{{ isset($post->user->avatar) ? Storage::url($post->user->avatar) : '/img/default_avatar.jpg'}}"
-                                                                         alt="..."
-                                                                         class="avatar img-raised">
-                                                                    <a href="{{ isset($post) ? route('users.show', ['id' => $post->user->id]) : '' }}">
-                                                                        <span>{{ $post->user->name ?? '' }}</span>
-                                                                    </a>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -144,7 +136,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="home" role="tabpanel">
+                                <div class="tab-pane" id="comments" role="tabpanel">
                                     <div class="row">
                                         <div class="col-md-12">
                                             @if (isset($user->comments))
@@ -208,31 +200,43 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="messages" role="tabpanel">
+                                <div class="tab-pane" id="followers" role="tabpanel">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-6">
                                             <div class="info info-horizontal">
-                                                <div class="icon icon-info">
-                                                    <i class="now-ui-icons design_palette"></i>
-                                                </div>
                                                 <div class="description">
-                                                    <h5 class="info-title">Colors adjustments</h5>
-                                                    <p class="description">
-                                                        Gain access to the demographics, psychographics, and location of
-                                                        unique people who talk about your brand.
-                                                    </p>
+                                                    <h5 class="info-title"> Followers: </h5>
+                                                    @if (isset($user->followers))
+                                                        @foreach($user->followers as $follower)
+                                                            <div class=" author" align="left">
+                                                                <img src="{{ isset($follower->avatar) ? Storage::url($follower->avatar) : '/img/default_avatar.jpg'}}"
+                                                                     hspace="11" vspace="13"
+                                                                     class="avatar img-raised">
+                                                                <a class="text-black" href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                    {{ $follower->name ?? '' }}
+                                                                </a>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
                                             <div class="info info-horizontal">
-                                                <div class="icon icon-info">
-                                                    <i class="now-ui-icons design_scissors"></i>
-                                                </div>
                                                 <div class="description">
-                                                    <h5 class="info-title">Performance Clothing</h5>
-                                                    <p class="description">
-                                                        Unify data from Facebook, Instagram, Twitter, LinkedIn, and
-                                                        Youtube to gain rich insights from easy-to-use reports.
-                                                    </p>
+                                                    <h5 class="info-title"> Followed: </h5>
+                                                    @if (isset($user->followed))
+                                                        @foreach($user->followed as $follower)
+                                                            <div class=" author" align="left">
+                                                                <img src="{{ isset($follower->avatar) ? Storage::url($follower->avatar) : '/img/default_avatar.jpg'}}"
+                                                                     hspace="11" vspace="13"
+                                                                     class="avatar img-raised">
+                                                                <a class="text-black" href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                    {{ $follower->name ?? '' }}
+                                                                </a>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
