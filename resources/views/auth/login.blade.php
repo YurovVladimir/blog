@@ -55,7 +55,7 @@
                                        href="{{ route('social_login', ['provider' => 'google']) }}">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
-                                    <a role="button" class="btn btn-white btn-icon btn-simple btn-round"
+                                    <a role="button" class="btn btn-icon btn-round btn-facebook"
                                        href="{{ route('social_login', ['provider' => 'facebook']) }}">
                                         <i class="fa fa-facebook"> </i>
                                     </a>
