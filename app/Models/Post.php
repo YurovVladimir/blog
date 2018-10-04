@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $post_type_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePostTypeId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Like[] $likes
  */
 class Post extends Model
 {

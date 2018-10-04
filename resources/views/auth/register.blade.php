@@ -7,21 +7,22 @@
         <div class="card-body">
 
             <h4 class="card-title text-center">{{ __('Register') }}</h4>
-            <div class="social text-center">
-                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
+            <div class="text-center icon-white">
+                <a role="button" class="btn btn-icon btn-round btn-vk"
                    href="{{ route('social_login', ['provider' => 'vkontakte']) }}">
                     <i class="fa fa-vk"></i>
                 </a>
-                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
-                href="{{ route('social_login', ['provider' => 'google']) }}">
-                    <i class="fa fa-google-plus i-danger"></i>
+                <a role="button" class="btn btn-icon btn-round btn-google"
+                   href="{{ route('social_login', ['provider' => 'google']) }}">
+                    <i class="fa fa-google-plus"></i>
                 </a>
-                <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
-                href="{{ route('social_login', ['provider' => 'facebook']) }}">
+                <a role="button" class="btn btn-icon btn-round btn-facebook"
+                   href="{{ route('social_login', ['provider' => 'facebook']) }}">
                     <i class="fa fa-facebook"> </i>
                 </a>
                 <h5 class="card-description"> or be classical </h5>
             </div>
+
             <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 @csrf
                 <div class="input-group">

@@ -47,11 +47,11 @@
                                     @endif
                                 </div>
                                 <div class="text-center icon-white">
-                                    <a role="button" class="btn btn-white btn-icon btn-simple btn-round"
+                                    <a role="button" class="btn btn-icon btn-round btn-vk"
                                        href="{{ route('social_login', ['provider' => 'vkontakte']) }}">
                                         <i class="fa fa-vk"></i>
                                     </a>
-                                    <a role="button" class="btn btn-dark btn-icon btn-simple btn-round"
+                                    <a role="button" class="btn btn-icon btn-round btn-google"
                                        href="{{ route('social_login', ['provider' => 'google']) }}">
                                         <i class="fa fa-google-plus"></i>
                                     </a>

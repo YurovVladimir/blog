@@ -21,6 +21,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereUpdatedAt($value)
+ * @property string $taggable_type
+ * @property int $taggable_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereTaggableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereTaggableType($value)
  */
 class Tag extends Model
 {

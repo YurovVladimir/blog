@@ -150,53 +150,13 @@
     right: 8px;
 }
 
-.btn-facebook {
+.btn-vk {
   &,
   &:hover,
   &focus,
   &:active,
   &:active:focus {
-    color: $social-facebook !important;
-  }
-}
-
-.btn-twitter {
-
-  &,
-  &:hover,
-  &focus,
-  &:active,
-  &:active:focus {
-    color: $social-twitter !important;
-  }
-}
-
-.btn-google {
-  &,
-  &:hover,
-  &focus,
-  &:active,
-  &:active:focus {
-    color: $social-google !important;
-  }
-}
-
-.btn-github {
-  &,
-  &:hover,
-  &focus,
-  &:active,
-  &:active:focus {
-    color: $social-github !important;
-  }
-}
-
-.btn-linkedin {
-  &,
-  &:hover,
-  &focus,
-  &:active,
-  &:active:focus {
-    color: $social-linkedin !important;
+    color: $white-bg;
+      background-color: $social-vk;
   }
 }

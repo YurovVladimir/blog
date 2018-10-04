@@ -41,12 +41,18 @@
                     </div>
                     @endif
 
-                <div align="center">
+                <div class="form-inline">
                     <button class="btn btn-info btn-round liked_post" data-post_id="{{ $post->id ?? 0 }}">
                         <i class="fa @if(auth()->user() && isset($post) && $post->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-thumbs-up fa-2x
                                     @else text-default fa-thumbs-o-up fa-2x @endif  " aria-hidden="false"></i>
                         <span class="count_post">{{ isset($post) ? $post->likes->where('is_liked', true)->count() : '' }}</span>
                     </button>
+                    <div style="position: absolute; right: 38px">
+                        <p class="lead">
+                        <i class="fa fa-eye"></i>
+                        {{ $post->view_count }}
+                        </p>
+                    </div>
                 </div>
 
                 <hr class="my-4">
