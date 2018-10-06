@@ -130,10 +130,10 @@ body.on('click', '.liked_post', function () {
             let count_post = self.find(".count_post"),
                 count = parseInt(count_post.text());
             if (data) {
-                tag_i.addClass('fa-thumbs-up').addClass('text-danger').removeClass('fa-thumbs-o-up').removeClass('text-default');
+                tag_i.addClass('fa-thumbs-up').addClass('text-danger').removeClass('fa-thumbs-o-up').removeClass('text-dark');
                 count_post.text(count + 1)
             } else {
-                tag_i.removeClass('fa-thumbs-up').removeClass('text-danger').addClass('fa-thumbs-o-up').addClass('text-default');
+                tag_i.removeClass('fa-thumbs-up').removeClass('text-danger').addClass('fa-thumbs-o-up').addClass('text-dark');
                 count_post.text(count - 1)
             }
         },

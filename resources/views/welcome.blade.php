@@ -8,8 +8,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto text-center">
-                            <h1 class="title"> You should be here!</h1>
-                            <h5 class="description">5,000 capacity venue, holding some of the latest technology lighting with a 24 colour laser system Amnesia is one of the islands most legendary clubs.</h5>
+                            <h1 class="title"> Welcome! </h1>
+                            <h5 class="description"> Create posts and discuss on different topics</h5>
                         </div>
                     </div>
                 </div>

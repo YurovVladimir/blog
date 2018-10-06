@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="20">
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent text-white" color-on-scroll="20" >
     <div class="container">
 
-        <div class="navbar-translate">
+        <div class="navbar-translate text-white">
             <ul class="navbar-nav ml-auto">
                <li class="nav-item" data-background-color="black">
                 <a class="nav-link" href="/" rel="tooltip" title="" data-placement="bottom">
@@ -17,7 +17,7 @@
             </button>
         </div>
 
-        <div class="collapse navbar-collapse has-image" id="navigation" data-color="orange"
+        <div class="collapse navbar-collapse has-image text-white" id="navigation" data-color="orange"
              data-nav-image="/img/blurred-image-1.jpg">
             <ul class="navbar-nav ml-auto">
                 @guest
@@ -37,6 +37,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('users.show', ['id' => auth()->user()->id]) }}"> My
                                 profile </a>
+                            <a class="dropdown-item" href="{{ route('posts.create') }}"> Create post </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

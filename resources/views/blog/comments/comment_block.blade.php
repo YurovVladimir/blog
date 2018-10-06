@@ -44,23 +44,23 @@
             </div>
             @php $user = auth()->user()  @endphp
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="btn btn-info btn-icon btn-round btn-sm delete_comment"
+                <button class="btn btn-dark btn-simple btn-icon btn-sm text-dark delete_comment"
                         data-comment_id="{{ $comment->id ?? 0 }}"
-                        style="position: absolute; top: 0; right: 5px">
+                        style="position: absolute; top: 0; right: 7px">
                     <i class="fa fa-times"></i>
                 </button>
             @endif
             @if($user && $user->id == ($comment->user_id ?? $user->id))
-                <button class="btn btn-info btn-icon btn-round btn-sm edit_comment"
+                <button class="btn btn-dark btn-simple btn-icon btn-sm text-dark edit_comment"
                         data-comment_id="{{ $comment->id ?? 0 }}"
-                        style="position: absolute; top: 0; right: 38px">
+                        style="position: absolute; top: 0; right: 42px">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
             @endif
         </div>
         <div class="card-footer">
-            <div style="position: absolute; bottom: 5px; right: 7px">
-                <button class="btn btn-info btn-round btn-sm liked"
+            <div style="position: absolute; bottom: 5px; right: 9px">
+                <button class="btn btn-dark btn-simple btn-sm text-dark liked"
                         data-comment_id="{{ $comment->id ?? 0 }}">
                     <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
                 @else text-default fa-heart-o @endif" aria-hidden="false"></i>

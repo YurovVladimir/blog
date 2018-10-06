@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -40,7 +41,6 @@ class UserController extends Controller
     }
 
     /**
-     * @param Post $post
      * @param User $user
      * @return \Illuminate\Http\Response
      */
@@ -81,6 +81,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $user->update($request->validated());
+        $this->uploadImage($request, $user);
         return response()->redirectToRoute('users.show', ['id' => $user->id]);
     }
 
@@ -125,5 +126,28 @@ class UserController extends Controller
         return response()->json([
             'count' => $user->followers
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     */
+    public function uploadImage(Request $request, User $user)
+    {
+        if ($request->hasFile('avatar')) {
+            $this->deleteImage($user);
+            $user->avatar = $request->file('avatar')->store('public/avatar');
+            $user->save();
+        }
+    }
+
+    /**
+     * @param User $user
+     */
+    protected function deleteImage(User $user)
+    {
+        if (Storage::exists($user->avatar)) {
+            Storage::delete($user->avatar);
+        }
     }
 }

@@ -46,33 +46,27 @@
             <div class="section">
                 <div class="container">
                     <div class="button-container">
-                        @if(auth()->user() && isset($user) && $user->followers->where('id', \auth()->user()->id)->first())
-                            <a class="btn btn-primary btn-round btn-lg unfollow"
-                               data-user_id="{{ $user->id ?? 0 }}">
-                                Unfollow</a>
-                        @else
-                            <a class="btn btn-primary btn-round btn-lg follow" data-user_id="{{ $user->id ?? 0 }}">
-                                Follow</a>
+                        @if (auth()->user()->id != $user->id)
+                            @if(auth()->user() && isset($user) && $user->followers->where('id', \auth()->user()->id)->first())
+                                <a class="btn btn-primary btn-round btn-lg unfollow"
+                                   data-user_id="{{ $user->id ?? 0 }}">
+                                    Unfollow</a>
+                            @else
+                                <a class="btn btn-primary btn-round btn-lg follow" data-user_id="{{ $user->id ?? 0 }}">
+                                    Follow</a>
+                            @endif
                         @endif
-                        <a class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"
-                           data-original-title="Show last post">
-                            <i class="fa fa-newspaper-o"></i>
-                        </a>
-                        <a href="#button" class="btn btn-warning btn-round btn-lg btn-icon" rel="tooltip"
-                           data-original-title="Show all posts">
-                            <i class="fa fa-tasks"></i>
-                        </a>
-                    </div>
-                    <h3 class="title">About me</h3>
-                    @if(auth()->user() && auth()->user()->id == $user->id)
-                        <div align="right">
-                            <a role="button" class="btn btn-default btn-round btn-simple btn-icon"
-                               href="{{ route('users.edit', ['id' => $user->id]) }}" rel="tooltip"
-                               data-original-title="Edit my profile">
+
+                        @if(auth()->user() && auth()->user()->id == $user->id)
+                            <a class="btn btn-dark btn-lg btn-icon" rel="tooltip"
+                               data-original-title="Edit my profile"
+                               href="{{ route('users.edit', ['id' => $user->id]) }}">
                                 <i class="fa fa-user-circle"></i>
                             </a>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
+                    <h3 class="title">About me</h3>
+
                     <h5 class="description text-center">{{ $user->description }}</h5>
 
                     {{--Portfolio--}}
@@ -179,8 +173,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="card-footer">
-                                                                        <div style="position: absolute; bottom: 5px; right: 7px">
-                                                                            <button class="btn btn-info btn-round btn-sm liked"
+                                                                        <div style="position: absolute; bottom: 5px; right: 9px">
+                                                                            <button class="btn btn-dark btn-simple btn-sm text-dark liked"
                                                                                     data-comment_id="{{ $comment->id ?? 0 }}">
                                                                                 <i class="fa @if(auth()->user() && isset($comment) && $comment->likes->where('user_id',
                                                              \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-heart
@@ -212,7 +206,8 @@
                                                                 <img src="{{ isset($follower->avatar) ? Storage::url($follower->avatar) : '/img/default_avatar.jpg'}}"
                                                                      hspace="11" vspace="13"
                                                                      class="avatar img-raised">
-                                                                <a class="text-black" href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                <a class="text-black"
+                                                                   href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
                                                                     {{ $follower->name ?? '' }}
                                                                 </a>
                                                             </div>
@@ -231,7 +226,8 @@
                                                                 <img src="{{ isset($follower->avatar) ? Storage::url($follower->avatar) : '/img/default_avatar.jpg'}}"
                                                                      hspace="11" vspace="13"
                                                                      class="avatar img-raised">
-                                                                <a class="text-black" href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                <a class="text-black"
+                                                                   href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
                                                                     {{ $follower->name ?? '' }}
                                                                 </a>
                                                             </div>

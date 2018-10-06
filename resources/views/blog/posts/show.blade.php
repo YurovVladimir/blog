@@ -10,6 +10,24 @@
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
 
+                @if(auth()->user() && auth()->user()->id == $post->user_id)
+                    <div align="left">
+                        <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
+
+                            <a role="button" class="btn btn-simple btn-dark btn-sm text-dark"
+                               href="{{ route('posts.edit',['id' => $post->id]) }}">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                            @csrf
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-simple btn-dark btn-sm text-dark">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </form>
+                    </div>
+                @endif
+
+
                 <input type="hidden" id="post_id" value="{{ $post->id }}">
                 <h1 class="display-3" align="center">
                     {{ ucfirst($post->name) }}
@@ -22,36 +40,18 @@
                     <img src="{{ isset($post->image) ? asset(Storage::url($post->image)) : '/img/default_image.jpg'}}"
                          class="img-fluid media-middle">
                 </div>
-                <hr class="my-4">
-                @if(auth()->user() && auth()->user()->id == $post->user_id)
-                    <div align="right">
-                    <form method="post" action="{{ route('posts.destroy',['id' => $post->id]) }}">
-
-                        <a role="button" class="btn btn-simple btn-success btn-round"
-                           href="{{ route('posts.edit',['id' => $post->id]) }}">
-                            <i class="fa fa-pencil-square-o"></i> Редактироваь пост
-                        </a>
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-simple btn-danger btn-round">
-                            <i class="fa fa-window-close-o"></i>
-                            Удалить пост
-                        </button>
-                    </form>
-                    </div>
-                    @endif
 
                 <div class="form-inline">
-                    <button class="btn btn-info btn-round liked_post" data-post_id="{{ $post->id ?? 0 }}">
-                        <i class="fa @if(auth()->user() && isset($post) && $post->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-thumbs-up fa-2x
-                                    @else text-default fa-thumbs-o-up fa-2x @endif  " aria-hidden="false"></i>
-                        <span class="count_post">{{ isset($post) ? $post->likes->where('is_liked', true)->count() : '' }}</span>
-                    </button>
-                    <div style="position: absolute; right: 38px">
-                        <p class="lead">
-                        <i class="fa fa-eye"></i>
+                    <p class="lead">
+                        <i class="fa fa-eye text-default"></i>
                         {{ $post->view_count }}
-                        </p>
+                    </p>
+                    <div style="position: absolute; right: 20px">
+                        <button class="btn btn-dark btn-simple btn-sm liked_post" data-post_id="{{ $post->id ?? 0 }}">
+                            <i class="fa @if(auth()->user() && isset($post) && $post->likes->where('user_id', \auth()->user()->id)->where('is_liked', true)->count()) text-danger fa-thumbs-up fa-2x
+                                    @else text-dark fa-thumbs-o-up fa-2x @endif  " aria-hidden="false"></i>
+                            <span class="count_post">{{ isset($post) ? $post->likes->where('is_liked', true)->count() : '' }}</span>
+                        </button>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                                 </div>
                             @endif
                             <div class="media-footer" align="right">
-                                <button class="btn btn-info btn-round store_comment" type="submit">
+                                <button class="btn btn-dark btn-simple btn-round store_comment" type="submit">
                                     <i class="now-ui-icons ui-1_send"></i> Reply
                                 </button>
                             </div>
@@ -88,7 +88,6 @@
                         </div>
                     </div>
 
-                    <hr class="my-4">
                 @endif
 
                 <section class="comment-list">
