@@ -46,7 +46,7 @@
             <div class="section">
                 <div class="container">
                     <div class="button-container">
-                        @if (auth()->user()->id != $user->id)
+                        @if (auth()->user() && auth()->user()->id != $user->id)
                             @if(auth()->user() && isset($user) && $user->followers->where('id', \auth()->user()->id)->first())
                                 <a class="btn btn-primary btn-round btn-lg unfollow"
                                    data-user_id="{{ $user->id ?? 0 }}">
