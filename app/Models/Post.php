@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 /**
  * App\Models\Post
@@ -34,13 +35,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    use Sluggable;
+
+    /**
+     * @return array
+     */
+    public function sluggable()
+    {
+        return ['slug' => ['source' => 'name']];
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'post_type_id'
+        'name', 'description', 'post_type_id', 'slug'
     ];
 
     /**
@@ -83,4 +101,5 @@ class Post extends Model
     {
         return $this->morphMany(Like::class, 'likable');
     }
+
 }

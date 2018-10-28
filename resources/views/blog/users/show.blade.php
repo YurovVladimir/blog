@@ -112,12 +112,12 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <h3 class="card-title">
-                                                                    <a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ ucfirst($post->name) }}</a>
+                                                                    <a href="{{ route('posts.show', $post->slug) }}">{{ ucfirst($post->name) }}</a>
                                                                 </h3>
                                                                 <p class="card-description">
                                                                     @php $text = substr($post->description, 0, 370) @endphp
                                                                     {{ $text }} @if(strlen($text) < strlen($post->description))
-                                                                        <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+                                                                        <a href="{{ route('posts.show', $post->slug) }}">
                                                                             ... Read
                                                                             More </a> @endif
                                                                 </p>
@@ -140,14 +140,14 @@
                                                         <div class="col-md-8">
                                                             <h2 class="card-title text-black" align="center">
                                                                 <a class="text-black"
-                                                                   href="{{ route('posts.show', ['id' => $comment->post->id]) }}">{{ ucfirst($comment->post->name) }}</a>
+                                                                   href="{{ route('posts.show', $comment->post->slug)}}">{{ ucfirst($comment->post->name) }}</a>
                                                             </h2>
                                                             <div class="card section-comments"
                                                                  data-comment_id="{{ $comment->id ?? 0}}">
                                                                 <div class="media-area card-body">
                                                                     <div class="media">
                                                                         <a class="pull-left nav-link"
-                                                                           href="{{ isset($comment) ? route('users.show', ['id' => $comment->user->id]) : '' }}">
+                                                                           href="{{ isset($comment) ? route('users.show', $comment->user->slug) : '' }}">
                                                                             <div class="avatar">
                                                                                 <img class="media-object img-raised avatar"
                                                                                      alt="64x64"
@@ -207,7 +207,7 @@
                                                                      hspace="11" vspace="13"
                                                                      class="avatar img-raised">
                                                                 <a class="text-black"
-                                                                   href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                   href="{{ isset($follower) ? route('users.show', $follower->slug) : '' }}">
                                                                     {{ $follower->name ?? '' }}
                                                                 </a>
                                                             </div>
@@ -227,7 +227,7 @@
                                                                      hspace="11" vspace="13"
                                                                      class="avatar img-raised">
                                                                 <a class="text-black"
-                                                                   href="{{ isset($follower) ? route('users.show', ['id' => $follower->id]) : '' }}">
+                                                                   href="{{ isset($follower) ? route('users.show', $follower->slug) : '' }}">
                                                                     {{ $follower->name ?? '' }}
                                                                 </a>
                                                             </div>

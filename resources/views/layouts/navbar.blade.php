@@ -35,7 +35,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('users.show', ['id' => auth()->user()->id]) }}"> My
+                            <a class="dropdown-item" href="{{ route('users.show', auth()->user()->slug) }}"> My
                                 profile </a>
                             <a class="dropdown-item" href="{{ route('posts.create') }}"> Create post </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"

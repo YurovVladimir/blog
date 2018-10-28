@@ -82,7 +82,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
         $this->uploadImage($request, $user);
-        return response()->redirectToRoute('users.show', ['id' => $user->id]);
+        return response()->redirectToRoute('users.show', $user->slug);
     }
 
     /**

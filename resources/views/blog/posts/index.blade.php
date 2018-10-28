@@ -22,18 +22,18 @@
                             </div>
                             <div class="col-md-8">
                                 <h3 class="card-title" style="margin-top: 0; margin-bottom: 0">
-                                    <a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ ucfirst($post->name) }}</a>
+                                    <a href="{{ route('posts.show', $post->slug) }}">{{ ucfirst($post->name) }}</a>
                                 </h3>
                                 <p class="card-description">
                                         @php $text = substr($post->description, 0, 200) @endphp
-                                    {{ $text }} @if(strlen($text) < strlen($post->description)) <a href="{{ route('posts.show', ['id' => $post->id]) }}"> ... Read
+                                        {{ $text }} @if(strlen($text) < strlen($post->description)) <a href="{{ route('posts.show', $post->slug)}}"> ... Read
                                         More </a> @endif
                                 </p>
 
                                 <div class="author">
                                     <img src="{{ isset($post->user->avatar) ? Storage::url($post->user->avatar) : '/img/default_avatar.jpg'}}" alt="..."
                                          class="avatar img-raised">
-                                        <a href="{{ isset($post) ? route('users.show', ['id' => $post->user->id]) : '' }}">
+                                        <a href="{{ isset($post) ? route('users.show', ['id' => $post->user->slug]) : '' }}">
                                         <span>{{ $post->user->name ?? '' }}</span>
                                         </a>
                                 </div>

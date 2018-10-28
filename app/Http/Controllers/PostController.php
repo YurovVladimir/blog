@@ -54,7 +54,7 @@ class PostController extends Controller
         /** @var Post $post */
         $post = Auth::user()->posts()->create($request->validated());
         $this->uploadImage($request, $post);
-        return response()->redirectToRoute('posts.show', ['id' => $post->id]);
+        return response()->redirectToRoute('posts.show', $post->slug);
     }
 
     /**
@@ -96,7 +96,7 @@ class PostController extends Controller
     {
         $post->update($request->validated());
         $this->uploadImage($request, $post);
-        return response()->redirectToRoute('posts.show', ['id' => $post->id]);
+        return response()->redirectToRoute('posts.show', $post->slug);
     }
 
     /**
